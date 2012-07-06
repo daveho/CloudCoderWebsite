@@ -1,0 +1,44 @@
+/* CloudCoder website css */
+
+html {
+	background: #228;
+}
+
+body {
+	font: 16px verdana, helvetica-neue, helvetica, arial, san-serif;
+	background: white;
+	width: 800px;
+	height: 10000px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 0;
+	border-left: 6px solid #aaf;
+	border-right: 6px solid #aaf;
+}
+
+.banner {
+	font-size: 28px;
+	font-weight: bold;
+	text-align: center;
+	padding: 6px 0px;
+}
+
+.topnav {
+	text-align: center;
+}
+
+.content {
+	padding: 0px 6px;
+}
+
+.footer {
+}
+
+.license {
+	float: right;
+}
+
+.topnav, .footer {
+	border-top: 2px solid #aaf;
+	border-bottom: 2px solid #aaf;
+}
