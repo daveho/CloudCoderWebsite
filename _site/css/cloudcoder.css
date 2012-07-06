@@ -25,6 +25,8 @@ body {
 
 .topnav {
 	text-align: center;
+	border-top: 2px solid #aaf;
+	border-bottom: 2px solid #aaf;
 }
 
 .content {
@@ -34,11 +36,8 @@ body {
 .footer {
 }
 
-.license {
-	float: right;
-}
-
-.topnav, .footer {
+.footer {
+	text-align: center;
+	color: #888;
 	border-top: 2px solid #aaf;
-	border-bottom: 2px solid #aaf;
 }
