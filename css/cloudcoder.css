@@ -27,6 +27,16 @@ body {
 	text-align: center;
 	border-top: 2px solid #aaf;
 	border-bottom: 2px solid #aaf;
+	background: #ddd;
+	padding: 2px;
+}
+
+.topnav a {
+	text-decoration: none;
+}
+
+.topnav a:hover {
+	text-decoration: underline;
 }
 
 .content {
@@ -40,4 +50,5 @@ body {
 	text-align: center;
 	color: #888;
 	border-top: 2px solid #aaf;
+	padding: 2px;
 }
