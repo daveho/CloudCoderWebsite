@@ -43,6 +43,21 @@ body {
 	padding: 0px 6px;
 }
 
+.content h1 {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.content h2 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.content h3 {
+	font-size: 18px;
+	font-weight: bold;
+}
+
 .footer {
 }
 

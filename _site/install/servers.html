@@ -17,7 +17,37 @@
 		</div>
 
 		<div class="content">
-		<p>Coming soon.</p>
+		<p>To deploy CloudCoder, you will need two Linux servers: the
+<em>webapp server</em> and the <em>build server</em>.</p>
+
+<p><em>Note</em>: you can probably use another Unix variant such as
+FreeBSD or Solaris rather than Linux, but CloudCoder is not
+tested on non-Linux platforms.</p>
+
+<h1 id="the-webapp-server">The webapp server</h1>
+
+<p>The webapp server runs the CloudCoder web application, and
+hosts the database where CloudCoder will save information about
+courses, problems, users, and student submissions.</p>
+
+<p>Minimum requirements:</p>
+
+<ul>
+  <li>512M or more of RAM</li>
+  <li>single-core CPU</li>
+  <li>8G of disk space</li>
+  <li>port 443 open (for SSL)</li>
+  <li>an SSL certificate</li>
+</ul>
+
+<p>The minimum requirements should be adequate for up to 150
+concurrent users.</p>
+
+<p>The webapp server can be a virtual machine.  If your IT department
+can set up a Linux virtual machine for you, this is a good option.
+<a href="http://www.lowendbox.com/">lowendbox</a> is a good resource for finding
+an inexpensive hosting service.  Cloud hosting services such
+as <a href="http://aws.amazon.com/ec2/">Amazon EC2</a> are also a good choice.</p>
 
 		</div>
 
