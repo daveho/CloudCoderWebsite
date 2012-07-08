@@ -7,7 +7,7 @@ To deploy CloudCoder, you will need two Linux servers: the
 
 *Note*: you can probably use another Unix variant such as
 FreeBSD or Solaris rather than Linux, but CloudCoder is not
-tested on non-Linux platforms.
+tested on non-Linux platforms, so you might encounter issues.
 
 The webapp server
 =================
