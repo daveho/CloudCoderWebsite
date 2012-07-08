@@ -67,3 +67,10 @@ body {
 	border-top: 2px solid #aaf;
 	padding: 2px;
 }
+
+.warning {
+	margin: 12px 40px;
+	padding: 6px;
+	border: 4px solid #a44;
+	background: #faa;
+}
