@@ -7,11 +7,13 @@ Welcome to CloudCoder!
 CloudCoder is an open source web-based programming exercise system.
 It is designed to make it easy for instructors in introductory
 programming courses to assign short exercises to students for
-skills development and assessment.
+skills development and assessment.  Currently, exercises in
+Java, Python, and C/C++ are supported.
 
 Because CloudCoder is web-based, it is easy for students to
 use.  The only software needed for students to work on exercises
-is a web browser.
+is a web browser.  The [screenshots](screenshots.html) page
+shows CloudCoder in action.
 
 To run CloudCoder, you need two Linux servers: one to host the
 web application and database, and one to compile and test student

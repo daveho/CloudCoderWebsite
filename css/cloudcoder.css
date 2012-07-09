@@ -124,3 +124,9 @@ pre {
 	color: black;
 	padding: 2px 4px;
 }
+
+.screenshot {
+	width: 400px;
+	border: 0;
+	margin-left: 40px;
+}
