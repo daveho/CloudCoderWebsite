@@ -21,6 +21,8 @@ body {
 	font-weight: bold;
 	text-align: center;
 	padding: 6px 0px;
+	background-image: url('/img/keyboard.jpg');
+	background-size: 800px;
 }
 
 .topnav {

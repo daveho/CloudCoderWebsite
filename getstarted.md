@@ -10,7 +10,7 @@ If you are considering adopting CloudCoder for your course and
 would like to try it out, you can request an account on
 our [demo server](demo.html).
 
-Here is the process:
+Here is the process for setting up your own CloudCoder installation:
 
 1. [Provision the servers](install/servers.html)
 2. [Build the CloudCoder software](install/build.html)
