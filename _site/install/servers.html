@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<title>CloudCoder - Provision and Configure Servers</title>
 		<link rel="stylesheet" href="/css/cloudcoder.css" />
+		<link rel="stylesheet" href="/css/coderay.css" />
 	</head>
 
 	<body>
@@ -39,23 +40,26 @@
 FreeBSD or Solaris rather than Linux, but CloudCoder is not
 tested on non-Linux platforms, so you might encounter issues.</p>
 
+<p>This page describes how to provision and set up the two
+servers.</p>
+
 <h1 id="the-webapp-server">The webapp server</h1>
 
 <p>The webapp server runs the CloudCoder web application, and
 hosts the database where CloudCoder will save information about
 courses, problems, users, and student submissions.</p>
 
-<p>Minimum requirements:</p>
+<p>Suggested configuration:</p>
 
 <ul>
-  <li>512M or more of RAM</li>
-  <li>single-core CPU</li>
-  <li>8G of disk space</li>
+  <li>512M or more RAM</li>
+  <li>2G or more disk space</li>
+  <li>any modern CPU</li>
   <li>port 443 open (for SSL)</li>
   <li>an SSL certificate</li>
 </ul>
 
-<p>The minimum requirements should be adequate for up to 150
+<p>The suggested configuration should be adequate for around 150
 concurrent users.</p>
 
 <p>The webapp server can be a virtual machine.  If your IT department
@@ -63,6 +67,169 @@ can set up a Linux virtual machine for you, this is a good option.
 <a href="http://www.lowendbox.com/">lowendbox</a> is a good resource for finding
 an inexpensive hosting service.  Cloud hosting services such
 as <a href="http://aws.amazon.com/ec2/">Amazon EC2</a> are also a good choice.</p>
+
+<h2 id="webapp-server-configuration">Webapp server configuration</h2>
+
+<p>Once your webapp server is available, you should install the following
+software on it:</p>
+
+<ul>
+  <li>JDK 1.6</li>
+  <li>MySQL</li>
+  <li>Apache2</li>
+</ul>
+
+<p>On Debian or Ubuntu Linux, use the command:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-6-jdk mysql-client mysql-server apache2
+</pre></div>
+</div>
+</div>
+
+<p>Make a note of the password you choose for the MySQL <code>root</code> user.</p>
+
+<h3 id="configuring-mysql">Configuring MySQL</h3>
+
+<p>You will need to create a MySQL user account for the CloudCoder webapp
+to use to communicate with the database.  Using the username
+<code>cloudcoder</code> is a good choice.  To create the user, run the
+command</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass \
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=&quot;create user cloudcoder identified by 'somepassword'&quot;
+</pre></div>
+</div>
+</div>
+
+<p>Enter the password for the MySQL <code>root</code> user when prompted.
+Replace <code>cloudcoder</code> and <code>somepassword</code> with the username and password you
+want to use.</p>
+
+<p>Next, create the database cloudcoder will use.  Again, the name
+<code>cloudcoderdb</code> is a good choice, but you can use any database name.
+Run the command</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass --execute=&quot;create database cloudcoderdb&quot;
+</pre></div>
+</div>
+</div>
+
+<p>Finally, grant the cloudcoder user account permission to create tables:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass \
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=&quot;grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'&quot;
+</pre></div>
+</div>
+</div>
+
+<p>Again, replace <code>cloudcoder</code> and <code>cloudcoderdb</code> with the user name and
+database name you chose previously.</p>
+
+<h3 id="configuring-apache2">Configuring Apache2</h3>
+
+<p>The Apache2 web server will act as a front-end for the CloudCoder web
+application.  In particular, it will accept requests via https
+and dispatch them to the CloudCoder web application.</p>
+
+<p>If you are using Debian or Ubuntu Linux, you will need to edit the
+file <code>/etc/apache2/sites-available/default-ssl</code>.  This file should
+begin with the line <code>&lt;VirtualHost *:443&gt;</code>.</p>
+
+<p>Make sure the <code>ServerName</code> directive is specified correctly.
+For example, if your hostname is <code>cs.unseen.edu</code>,
+then it should be specified as</p>
+
+<pre><code>ServerName cs.unseen.edu:443
+</code></pre>
+
+<p>Add a section to the top of the file (just below the <code>ServerAdmin</code> directive)
+as follows:</p>
+
+<pre><code>    # Transparently proxy requests for /cloudcoder to the
+    # CloudCoder Jetty server
+    ProxyPass /cloudcoder http://localhost:8081/cloudcoder
+    ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
+    &lt;Proxy http://localhost:8081/cloudcoder&gt;
+            Order Allow,Deny
+            Allow from all
+    &lt;/Proxy&gt;
+</code></pre>
+
+<p>To make sure that <code>mod_proxy</code> is enabled, run the command</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo a2enmod proxy
+</pre></div>
+</div>
+</div>
+
+<p>At the bottom of the file, you will need to specify the locations of
+your SSL certificates and private key.  For example,</p>
+
+<pre><code>    SSLEngine On
+    SSLCertificateFile /etc/cert/cert.cer
+    SSLCertificateChainFile /etc/cert/chain.cer
+    SSLCertificateKeyFile /etc/keys/server.key
+</code></pre>
+
+<p>The example above assumes that certificates are stored in <code>/etc/cert</code> and the
+server private key is stored in <code>/etc/keys</code>.  The server private key should
+be a file readable only by <code>root</code>.  The &ldquo;chain&rdquo; certificate is the one
+that establishes a chain of trust between a root CA and your server&rsquo;s certificate.</p>
+
+<p>To enable Apache to server SSL requests, run the commands:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>cd /etc/apache2/sites-enabled &amp;&amp; sudo ln -s ../sites-available/default-ssl
+</pre></div>
+</div>
+</div>
+
+<p>Apache should be restarted to make these configuration changes take effect:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo service apache2 restart
+</pre></div>
+</div>
+</div>
+
+<h1 id="the-build-server">The build server</h1>
+
+<p>The build server is the server that builds and tests student submissions.
+It does <em>not</em> need to be accessible from a public network: it maintains
+a network connection to the webapp server, and when the webapp has
+a submission that needs testing, it is sent to the build server via this
+connection.  So, you will probably provision the build server as
+a physical PC that you place in a location that has a network connection.
+(You can use a hosting service for the build server, but it&rsquo;s not necessary.)</p>
+
+<p>Depending on how many students will be using CloudCoder, you may want
+to choose relatively powerful hardware for the build server.  A suggested
+configuration is</p>
+
+<ul>
+  <li>Quad-core or better CPU</li>
+  <li>8GB or more RAM</li>
+</ul>
+
+<p>The build server requires the following software:</p>
+
+<ul>
+  <li>JDK 1.6 or later</li>
+  <li>gcc/g++ (if you will be assigning C/C++ problems)</li>
+</ul>
+
+<p>To install this software on Debian or Ubuntu Linux:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-6-jdk gcc g++
+</pre></div>
+</div>
+</div>
 
 			</div>
 	
