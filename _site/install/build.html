@@ -33,7 +33,150 @@
 			</div>
 	
 			<div id="content">
-			<p>Coming soon.</p>
+			<p>Once you have your <a href="servers.html">servers provisioned and configured</a>,
+you can build the CloudCoder software.</p>
+
+<h1 id="prerequisites">Prerequisites</h1>
+
+<p>You can build CloudCoder on any computer that has the following software
+available:</p>
+
+<ul>
+  <li>git</li>
+  <li>JDK 1.6 or later</li>
+  <li>Ant</li>
+  <li>perl</li>
+  <li>GWT SDK 2.4 or later</li>
+</ul>
+
+<p>On Debian or Ubuntu Linux, you can install everything except the GWT
+SDK using the command</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install git openjdk-6-jdk ant
+</pre></div>
+</div>
+</div>
+
+<p>The GWT SDK can be downloaded from</p>
+
+<blockquote>
+  <p><a href="https://developers.google.com/web-toolkit/versions">https://developers.google.com/web-toolkit/versions</a></p>
+</blockquote>
+
+<p>Make sure you get version 2.4 or later.  Note that if you have the
+<a href="https://developers.google.com/eclipse/docs/download">Google Plugin For Eclipse</a> installed,
+the SDK is included.  Look in the <code>plugins</code> directory in your eclipse installation
+for a directory whose name begins with <code>com.google.gwt.sdk</code>.</p>
+
+<h1 id="check-out-the-code">Check out the code</h1>
+
+<p>Use git to check out the CloudCoder source code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>git clone git://github.com/daveho/CloudCoder.git
+</pre></div>
+</div>
+</div>
+
+<p>Change directory into the directory you just checked out:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>cd CloudCoder
+</pre></div>
+</div>
+</div>
+
+<h1 id="configure-cloudcoder">Configure CloudCoder</h1>
+
+<p>Before you build CloudCoder, you need to enter all of the configuration
+information CloudCoder will need to run.  Run the command:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>./configure.pl
+</pre></div>
+</div>
+</div>
+
+<p>You will be prompted with a series of questions.  Here is an example session:</p>
+
+<pre><code>Welcome to the CloudCoder configuration script!
+Please enter the information needed to configure CloudCoder for your system.
+You can just hit enter to accept the default value (if there is one).
+
+Where is your GWT SDK installed (the directory with webAppCreator in it)?
+==&gt; /home/dhovemey/software/gwt-2.4.0               
+
+What MySQL username will the webapp use to connect to the database?
+==&gt; cloudcoder
+
+What MySQL password will the webapp use to connect to the database?
+==&gt; somepassword
+
+What MySQL database will contain the CloudCoder tables?
+[default: cloudcoderdb] ==&gt; 
+
+What host will CloudCoder connect to to access the MySQL database?
+[default: localhost] ==&gt; 
+
+If MySQL is running on a non-standard port, enter :XXXX (e.g, :8889 for MAMP).
+Just hit enter if MySQL is running on the standard port.
+==&gt; 
+
+Which login service do you want to use (imap or database)?
+[default: database] ==&gt;         
+
+What host will the CloudCoder webapp be running on?
+(This information is needed by the Builder so it knows how to connect
+to the webapp.)
+[default: localhost] ==&gt; cs.unseen.edu
+
+How many threads should the Builder use? (suggestion: 1 per core)
+[default: 2] ==&gt; 8
+
+What port will the CloudCoder webapp use to listen for connections from
+Builders?
+[default: 47374] ==&gt; 
+
+What port will the CloudCoder web server listen on?
+[default: 8081] ==&gt; 
+
+What context path should the webapp use?
+[default: /cloudcoder] ==&gt; 
+
+Should the CloudCoder web server accept connections only from localhost?
+(Set this to 'true' if using a reverse proxy, which is recommended)
+[default: true] ==&gt; 
+
+Write configuration file (local.properties)?
+[default: yes] ==&gt; 
+Writing properties...Done!
+</code></pre>
+
+<p>Note that in the transcript above, many of the default options were chosen
+(such as choosing <code>cloudcoderdb</code> as the database name.)  Just press enter
+to accept a default option.</p>
+
+<p>Make sure that you use the same MySQL username, password, and database name
+that you specified when you <a href="servers.html">provisioned the servers</a>.</p>
+
+<h1 id="build-cloudcoder">Build CloudCoder</h1>
+
+<p>To build CloudCoder, just run the command</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>./build.pl
+</pre></div>
+</div>
+</div>
+
+<p>The command will take a while to run, but when it finishes you will have
+two jarfiles representing the deployable form of the software that
+will run on the webapp server and the build server:</p>
+
+<pre><code>CloudCoderWebServer/cloudcoderApp.jar
+CloudCoderBuilder/cloudcoderBuilder.jar
+</code></pre>
 
 			</div>
 	

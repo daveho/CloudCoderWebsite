@@ -111,3 +111,11 @@ body {
 	border: 4px solid #a44;
 	background: #faa;
 }
+
+/* Style for code blocks (same as for CodeRay blocks). */
+pre {
+	background-color: hsl(0,0%,95%);
+	border: 1px solid silver;
+	color: black;
+	padding: 2px 4px;
+}
