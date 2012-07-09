@@ -86,6 +86,7 @@ body {
 #content h1 {
 	font-size: 24px;
 	font-weight: bold;
+	border-bottom: 1px solid black;
 }
 #content h2 {
 	font-size: 20px;
