@@ -33,7 +33,56 @@
 			</div>
 	
 			<div id="content">
-			<p>Coming soon.</p>
+			<p><a href="build.html">Prev</a> <a href="course.html">Next</a></p>
+
+<p>This page describes how to deploy the CloudCoder software to the
+webapp server and build server.</p>
+
+<p>Recall that the result of the <a href="build.html">previous step</a> was two
+jar files.  These jar files are completely self-contained: all you need
+to do is copy them to the server.  Once copied to the server,
+simple commands (described below) allow you to start, control, and stop
+the software.</p>
+
+<h1 id="deploying-the-webapp">Deploying the webapp</h1>
+
+<p>To deploy and start the web app, the general process is:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderWebServer/cloudcoderApp.jar username@server:/some/path
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>cd /some/path
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderApp.jar start
+</pre></div>
+</div>
+</div>
+
+<p>Replace <code>username</code> with the user account under which the webapp will run,
+which can be any user account.  Replace <code>server</code> with the full hostname
+(e.g., <code>cs.unseen.edu</code>) of the webapp server.  Replace <code>/some/path</code> for
+the path of the directory in which the webapp will run.</p>
+
+<p>If all goes well, you should now be able to open a web browser with the
+URL</p>
+
+<pre><code>https://server/cloudcoder
+</code></pre>
+
+<p>and see the CloudCoder login page.</p>
+
+<p>If errors occur, check <code>/var/log/apache2/error.log</code> and <code>/some/path/logs/cloudcoder.log</code>.</p>
+
+<h2 id="stopping-the-webapp">Stopping the webapp</h2>
+
+<p>To stop the webapp, run</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /some/path
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderApp.jar shutdown
+</pre></div>
+</div>
+</div>
 
 			</div>
 	

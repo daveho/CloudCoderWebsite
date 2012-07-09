@@ -2,15 +2,17 @@
 layout: default
 title: Provision and Configure Servers
 ---
+Prev | [Next](build.html)
+
+This page describes how to provision and set up the two
+servers.
+
 To deploy CloudCoder, you will need two Linux servers: the
 *webapp server* and the *build server*.
 
 *Note*: you can probably use another Unix variant such as
 FreeBSD or Solaris rather than Linux, but CloudCoder is not
 tested on non-Linux platforms, so you might encounter issues.
-
-This page describes how to provision and set up the two
-servers.
 
 The webapp server
 =================

@@ -2,8 +2,9 @@
 layout: default
 title: Building the CloudCoder Software
 ---
-Once you have your [servers provisioned and configured](servers.html),
-you can build the CloudCoder software.
+[Prev](servers.html) [Next](deploy.html)
+
+This page describes how to configure and build the CloudCoder software.
 
 # Prerequisites
 
@@ -120,7 +121,7 @@ To build CloudCoder, just run the command
 	./build.pl
 
 The command will take a while to run, but when it finishes you will have
-two jarfiles representing the deployable form of the software that
+two jar files representing the deployable form of the software that
 will run on the webapp server and the build server:
 
 	CloudCoderWebServer/cloudcoderApp.jar
