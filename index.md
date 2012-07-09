@@ -16,9 +16,8 @@ is a web browser.
 To run CloudCoder, you need two Linux servers: one to host the
 web application and database, and one to compile and test student
 submissions.  Only the web/database server needs to be
-network-facing.  CloudCoder is straightforward to
-install and run: see the [Getting Started](getstarted.html)
-page for details.
+network-facing.  See the [Getting Started](getstarted.html)
+page for details on how to install CloudCoder.
 
 The [CloudCoder execise repository](repository.html)
 is a database of freely-redistributable exercises written by
