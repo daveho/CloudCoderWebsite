@@ -6,6 +6,10 @@ html {
 	border: 0;
 }
 
+body {
+	font: 16px "Helvetica", "Arial";
+}
+
 /*
  * Create a background div to fit exactly in the browser window.
  */
@@ -77,6 +81,7 @@ html {
 /* Main page content */
 #content {
 	padding: 0px 6px;
+	margin-bottom: 8px;
 }
 #content h1 {
 	font-size: 24px;
