@@ -29,7 +29,8 @@ The GWT SDK can be downloaded from
 
 Make sure you get version 2.4 or later.  Note that if you have the
 [Google Plugin For Eclipse](https://developers.google.com/eclipse/docs/download) installed,
-the SDK is included.  Look in the `plugins` directory in your eclipse installation
+the SDK is included, meaning that you don't need to download it separately.
+Look in the `plugins` directory in your eclipse installation
 for a directory whose name begins with `com.google.gwt.sdk`.
 
 # Check out the code
@@ -38,6 +39,10 @@ Use git to check out the CloudCoder source code:
 
 {:lang='bash'}
 	git clone git://github.com/daveho/CloudCoder.git
+
+Alternately, you can fork the repository on github (at <https://github.com/daveho/CloudCoder>)
+and then clone your fork.  This is the best option if you plan to make any changes
+to the code.
 
 Change directory into the directory you just checked out:
 
