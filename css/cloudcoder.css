@@ -8,6 +8,9 @@ html {
 
 body {
 	font: 16px "Helvetica", "Arial";
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
 /*
@@ -60,7 +63,7 @@ body {
 	font-size: 28px;
 	font-weight: bold;
 	text-align: center;
-	padding: 6px 0px;
+	padding: 10px 0px;
 	background-image: url('/img/keyboard.jpg');
 	background-size: 800px;
 }
