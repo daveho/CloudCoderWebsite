@@ -4,34 +4,128 @@
 		<meta charset="utf-8" />
 		<title>CloudCoder - Deploy CloudCoder</title>
 		<link rel="stylesheet" href="/css/cloudcoder.css" />
+		<link rel="stylesheet" href="/css/coderay.css" />
 	</head>
 
 	<body>
-		<div class="banner">CloudCoder - Deploy CloudCoder</div>
-		<div class="topnav">
-			<a href="/">Home</a> |
-			<a href="/getstarted.html">Getting Started</a> |
-			<a href="/demo.html">Demo Server</a> |
-			<a href="/repository.html">Exercise Repository</a> |
-			<a href="/contribute.html">Contributing</a>
-		</div>
+		<!-- Page background -->
+		<div id="bg"><div id="bg-center"></div></div>
 
-		<div class="warning">
-			<strong>Please note:</strong>
-			This site is a work in progress, and information may be
-			incomplete or inaccurate.  CloudCoder development is progressing
-			rapidly, and it should be ready for wider use in
-			September, 2012.
-		</div>
+		<!-- Page content -->
+		<div id="container">
 
-		<div class="content">
-		<p>Coming soon.</p>
+			<div id="banner">CloudCoder - Deploy CloudCoder</div>
 
-		</div>
+			<div id="topnav">
+				<a href="/">Home</a> |
+				<a href="/getstarted.html">Getting Started</a> |
+				<a href="/demo.html">Demo Server</a> |
+				<a href="/repository.html">Exercise Repository</a> |
+				<a href="/contribute.html">Contributing</a>
+			</div>
+	
+			<div class="warning">
+				<strong>Please note:</strong>
+				This site is a work in progress, and information may be
+				incomplete or inaccurate.  CloudCoder development is progressing
+				rapidly, and it should be ready for wider use in
+				September, 2012.
+			</div>
+	
+			<div id="content">
+			<p><a href="build.html">Prev</a> <a href="course.html">Next</a></p>
 
-		<div class="footer">
-			&copy; 2012 CloudCoder team
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+<p>This page describes how to deploy the CloudCoder software to the
+webapp server and build server.</p>
+
+<p>Recall that the result of the <a href="build.html">previous step</a> was two
+jar files.  These jar files are completely self-contained: all you need
+to do is copy them to the server.  Once copied to the server,
+simple commands (described below) allow you to start, control, and stop
+the software.</p>
+
+<h1 id="deploying-to-the-webapp">Deploying to the webapp</h1>
+
+<p>To deploy and start the web app, the general process is:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderWebServer/cloudcoderApp.jar username@server:/some/path
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>cd /some/path
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderApp.jar start
+</pre></div>
+</div>
+</div>
+
+<p>Replace <code>username</code> with the user account under which the webapp will run,
+which can be any user account.  Replace <code>server</code> with the full hostname
+(e.g., <code>cs.unseen.edu</code>) of the webapp server.  Replace <code>/some/path</code> for
+the path of the directory in which the webapp will run.</p>
+
+<p>If all goes well, you should now be able to open a web browser with the
+URL</p>
+
+<pre><code>https://server/cloudcoder
+</code></pre>
+
+<p>and see the CloudCoder login page.</p>
+
+<p>If errors occur, check <code>/var/log/apache2/error.log</code> and <code>/some/path/logs/cloudcoder.log</code>.</p>
+
+<h2 id="stopping-the-webapp">Stopping the webapp</h2>
+
+<p>To stop the webapp, run</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /some/path
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderApp.jar shutdown
+</pre></div>
+</div>
+</div>
+
+<h1 id="deploying-to-the-build-server">Deploying to the build server</h1>
+
+<p>To deploy the builder server software:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:/another/path
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>cd /another/path
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderBuilder.jar start
+</pre></div>
+</div>
+</div>
+
+<p>Replace <code>username</code>, <code>server</code>, and <code>/another/path</code> as appropriate.
+As with the webapp, <code>username</code> is the user account under which the build
+server software will run, which should be an unprivileged account.
+<code>server</code> is the hostname of the build server.  <code>/another/path</code> is the
+directory in which the build server software will run.</p>
+
+<p>You can check <code>logs/builder.log</code> for startup messages.  If you see messages that
+read <code>Connected!</code> then the build server has successfully connected to the webapp
+and is ready to download and test submissions.</p>
+
+<h2 id="stopping-the-build-server">Stopping the build server</h2>
+
+<p>To stop the build server, run</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /another/path
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderBuilder.jar shutdown
+</pre></div>
+</div>
+</div>
+
+			</div>
+	
+			<div id="footer">
+				&copy; 2012 CloudCoder team
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+			</div>
+
 		</div>
 	</body>
 

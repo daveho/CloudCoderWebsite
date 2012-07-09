@@ -1,22 +1,62 @@
 /* CloudCoder website css */
 
 html {
-	background: #228;
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
 body {
-	font: 16px verdana, helvetica-neue, helvetica, arial, san-serif;
-	background: white;
-	width: 800px;
-	height: 10000px;
-	overflow: hidden;
-	margin: 0 auto;
-	padding: 0;
-	border-left: 6px solid #aaf;
-	border-right: 6px solid #aaf;
+	font: 16px "Helvetica", "Arial";
 }
 
-.banner {
+/*
+ * Create a background div to fit exactly in the browser window.
+ */
+#bg {
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: #228;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	z-index: -1;
+	overflow: hidden;
+}
+
+/*
+ * A div horizontally-centered within the background div which uses
+ * the positive-padding negative-margin trick to create a white background
+ * (with light blue borders at the sides) to enclose the page content.
+ */
+#bg-center {
+	width: 800px;
+	margin: 0 auto;
+	background: white;
+	border-left: 6px solid #aaf;
+	border-right: 6px solid #aaf;
+	padding-bottom: 20000px;
+	margin-bottom: -20000px;
+}
+
+/*
+ * The container div for actual page content.
+ * Its purpose is to fit the content nicely within the center
+ * content area.  The CSS properties should match #bg-center.
+ */
+#container {
+	width: 800px;
+	margin: 0 auto;
+	background: transparent;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+}
+
+/* Top banner */
+#banner {
 	font-size: 28px;
 	font-weight: bold;
 	text-align: center;
@@ -25,45 +65,42 @@ body {
 	background-size: 800px;
 }
 
-.topnav {
+/* Top navigation bar */
+#topnav {
 	text-align: center;
 	border-top: 2px solid #aaf;
 	border-bottom: 2px solid #aaf;
 	background: #ddd;
 	padding: 2px;
 }
-
-.topnav a {
+#topnav a {
 	text-decoration: none;
 }
-
-.topnav a:hover {
+#topnav a:hover {
 	text-decoration: underline;
 }
 
-.content {
+/* Main page content */
+#content {
 	padding: 0px 6px;
+	margin-bottom: 8px;
 }
-
-.content h1 {
+#content h1 {
 	font-size: 24px;
 	font-weight: bold;
+	border-bottom: 1px solid black;
 }
-
-.content h2 {
+#content h2 {
 	font-size: 20px;
 	font-weight: bold;
 }
-
-.content h3 {
+#content h3 {
 	font-size: 18px;
 	font-weight: bold;
 }
 
-.footer {
-}
-
-.footer {
+/* Page footer */
+#footer {
 	text-align: center;
 	color: #888;
 	border-top: 2px solid #aaf;
@@ -75,4 +112,12 @@ body {
 	padding: 6px;
 	border: 4px solid #a44;
 	background: #faa;
+}
+
+/* Style for code blocks (same as for CodeRay blocks). */
+pre {
+	background-color: hsl(0,0%,95%);
+	border: 1px solid silver;
+	color: black;
+	padding: 2px 4px;
 }
