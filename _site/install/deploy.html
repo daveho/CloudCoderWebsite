@@ -44,7 +44,7 @@ to do is copy them to the server.  Once copied to the server,
 simple commands (described below) allow you to start, control, and stop
 the software.</p>
 
-<h1 id="deploying-the-webapp">Deploying the webapp</h1>
+<h1 id="deploying-to-the-webapp">Deploying to the webapp</h1>
 
 <p>To deploy and start the web app, the general process is:</p>
 
@@ -80,6 +80,41 @@ URL</p>
   <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
 <span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /some/path
 <span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderApp.jar shutdown
+</pre></div>
+</div>
+</div>
+
+<h1 id="deploying-to-the-build-server">Deploying to the build server</h1>
+
+<p>To deploy the builder server software:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:/another/path
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>cd /another/path
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderBuilder.jar start
+</pre></div>
+</div>
+</div>
+
+<p>Replace <code>username</code>, <code>server</code>, and <code>/another/path</code> as appropriate.
+As with the webapp, <code>username</code> is the user account under which the build
+server software will run, which should be an unprivileged account.
+<code>server</code> is the hostname of the build server.  <code>/another/path</code> is the
+directory in which the build server software will run.</p>
+
+<p>You can check <code>logs/builder.log</code> for startup messages.  If you see messages that
+read <code>Connected!</code> then the build server has successfully connected to the webapp
+and is ready to download and test submissions.</p>
+
+<h2 id="stopping-the-build-server">Stopping the build server</h2>
+
+<p>To stop the build server, run</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /another/path
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderBuilder.jar shutdown
 </pre></div>
 </div>
 </div>
