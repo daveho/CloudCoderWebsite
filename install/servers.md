@@ -45,8 +45,9 @@ as [Amazon EC2](http://aws.amazon.com/ec2/) are also a good choice.
 (An EC2 micro instance works well as a webapp server.)
 
 If you use a hosting service, we recommend that you use Debian or
-Ubuntu Linux.  For example, if you use Amazon EC2
-Ubuntu Server 12.04 LTS is a good choice.
+Ubuntu Linux.  For example, if you use Amazon EC2, the
+**Ubuntu Server 12.04 LTS** virtual machine image is a good choice.
+(Either 32 or 64 bit should be fine.)
 
 Webapp server configuration
 ---------------------------
@@ -109,7 +110,7 @@ and dispatch them to the CloudCoder web application.
 
 If you are using Debian or Ubuntu Linux, you will need to edit the
 file `/etc/apache2/sites-available/default-ssl`.  This file should
-begin with the line `<VirtualHost *:443>`.
+begin with the line `<VirtualHost *:443>` (or something similar).
 
 Make sure the `ServerName` directive is specified correctly.
 For example, if your hostname is `cloudcoder.unseen.edu`,
@@ -148,14 +149,29 @@ The example above assumes that certificates are stored in `/etc/cert` and the
 server private key is stored in `/etc/keys`.  The server private key should
 be a file readable only by `root`.  The "chain" certificate is the one
 that establishes a chain of trust between a root CA and your server's certificate.
+Your certificate authority or IT department should have documentation on how to obtain
+these files.  (Note that the server private key is generated when you create
+the CSR prior to requesting the SSL certificate from your certificate authority.)
 
-To enable Apache to server SSL requests, run the commands:
+To make sure that `mod_ssl` is enabled, run the command:
+
+	sudo a2enmod ssl
+
+To enable Apache to serve SSL requests, run the commands:
 
 	cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/default-ssl
 
 Apache should be restarted to make these configuration changes take effect:
 
 	sudo service apache2 restart
+
+To see if SSL is enabled, try to load the page
+
+	https://hostname/
+
+in a web browser, where `hostname` is the full DNS name of your server,
+for example **cloudcoder.unseen.edu**. If a test page loads
+(under Ubuntu, it says "It works!") without any errors, then SSL is working.
 
 The build server
 ================

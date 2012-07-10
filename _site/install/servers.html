@@ -85,8 +85,9 @@ as <a href="http://aws.amazon.com/ec2/">Amazon EC2</a> are also a good choice.
 (An EC2 micro instance works well as a webapp server.)</p>
 
 <p>If you use a hosting service, we recommend that you use Debian or
-Ubuntu Linux.  For example, if you use Amazon EC2
-Ubuntu Server 12.04 LTS is a good choice.</p>
+Ubuntu Linux.  For example, if you use Amazon EC2, the
+<strong>Ubuntu Server 12.04 LTS</strong> virtual machine image is a good choice.
+(Either 32 or 64 bit should be fine.)</p>
 
 <h2 id="webapp-server-configuration">Webapp server configuration</h2>
 
@@ -155,7 +156,7 @@ and dispatch them to the CloudCoder web application.</p>
 
 <p>If you are using Debian or Ubuntu Linux, you will need to edit the
 file <code>/etc/apache2/sites-available/default-ssl</code>.  This file should
-begin with the line <code>&lt;VirtualHost *:443&gt;</code>.</p>
+begin with the line <code>&lt;VirtualHost *:443&gt;</code> (or something similar).</p>
 
 <p>Make sure the <code>ServerName</code> directive is specified correctly.
 For example, if your hostname is <code>cloudcoder.unseen.edu</code>,
@@ -197,9 +198,17 @@ SSLCertificateKeyFile /etc/keys/server.key
 <p>The example above assumes that certificates are stored in <code>/etc/cert</code> and the
 server private key is stored in <code>/etc/keys</code>.  The server private key should
 be a file readable only by <code>root</code>.  The &ldquo;chain&rdquo; certificate is the one
-that establishes a chain of trust between a root CA and your server&rsquo;s certificate.</p>
+that establishes a chain of trust between a root CA and your server&rsquo;s certificate.
+Your certificate authority or IT department should have documentation on how to obtain
+these files.  (Note that the server private key is generated when you create
+the CSR prior to requesting the SSL certificate from your certificate authority.)</p>
 
-<p>To enable Apache to server SSL requests, run the commands:</p>
+<p>To make sure that <code>mod_ssl</code> is enabled, run the command:</p>
+
+<pre><code>sudo a2enmod ssl
+</code></pre>
+
+<p>To enable Apache to serve SSL requests, run the commands:</p>
 
 <pre><code>cd /etc/apache2/sites-enabled &amp;&amp; sudo ln -s ../sites-available/default-ssl
 </code></pre>
@@ -208,6 +217,15 @@ that establishes a chain of trust between a root CA and your server&rsquo;s cert
 
 <pre><code>sudo service apache2 restart
 </code></pre>
+
+<p>To see if SSL is enabled, try to load the page</p>
+
+<pre><code>https://hostname/
+</code></pre>
+
+<p>in a web browser, where <code>hostname</code> is the full DNS name of your server,
+for example <strong>cloudcoder.unseen.edu</strong>. If a test page loads
+(under Ubuntu, it says &ldquo;It works!&rdquo;) without any errors, then SSL is working.</p>
 
 <h1 id="the-build-server">The build server</h1>
 
