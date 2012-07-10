@@ -21,4 +21,4 @@ The CloudCoder developers are:
 
 > Jaime Spacco <jspacco@knox.edu>
 > 
-> David Hovemeyer <david.hovemeyer@gmail.com>
+> David Hovemeyer <dhovemey@ycp.edu>
