@@ -4,11 +4,10 @@ title: Provision and Configure Servers
 ---
 Prev | [Next](build.html)
 
-This page describes how to provision and set up the two
-servers.
-
 To deploy CloudCoder, you will need two Linux servers: the
 *webapp server* and the *build server*.
+This page describes how to provision and set up these
+servers.
 
 *Note*: you can probably use another Unix variant such as
 FreeBSD or Solaris rather than Linux, but CloudCoder is not
@@ -25,7 +24,7 @@ Suggested configuration:
 
 * 512M or more RAM
 * 2G or more disk space
-* any modern CPU
+* any modern CPU (single core is fine)
 * port 443 open (for SSL)
 * an SSL certificate
 
@@ -70,9 +69,8 @@ Enter the password for the MySQL `root` user when prompted.
 Replace `cloudcoder` and `somepassword` with the username and password you
 want to use.
 
-Next, create the database cloudcoder will use.  Again, the name
-`cloudcoderdb` is a good choice, but you can use any database name.
-Run the command
+Next, create the database cloudcoder will use.  `cloudcoderdb` is a good choice,
+but you can use any database name.  Run the command
 
 {:lang='bash'}
 	mysql --user=root --pass --execute="create database cloudcoderdb"
@@ -83,7 +81,7 @@ Finally, grant the cloudcoder user account permission to create tables:
 	mysql --user=root --pass \
 		--execute="grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'"
 
-Again, replace `cloudcoder` and `cloudcoderdb` with the user name and
+Again, replace `cloudcoder` and `cloudcoderdb` with the username and
 database name you chose previously.
 
 ### Configuring Apache2
@@ -105,14 +103,14 @@ then it should be specified as
 Add a section to the top of the file (just below the `ServerAdmin` directive)
 as follows:
 
-        # Transparently proxy requests for /cloudcoder to the
-        # CloudCoder Jetty server
-        ProxyPass /cloudcoder http://localhost:8081/cloudcoder
-        ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
-        <Proxy http://localhost:8081/cloudcoder>
-                Order Allow,Deny
-                Allow from all
-        </Proxy>
+	# Transparently proxy requests for /cloudcoder to the
+	# CloudCoder Jetty server
+	ProxyPass /cloudcoder http://localhost:8081/cloudcoder
+	ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
+	<Proxy http://localhost:8081/cloudcoder>
+	        Order Allow,Deny
+	        Allow from all
+	</Proxy>
 
 To make sure that `mod_proxy` is enabled, run the command
 
@@ -122,10 +120,10 @@ To make sure that `mod_proxy` is enabled, run the command
 At the bottom of the file, you will need to specify the locations of
 your SSL certificates and private key.  For example,
 
-        SSLEngine On
-        SSLCertificateFile /etc/cert/cert.cer
-        SSLCertificateChainFile /etc/cert/chain.cer
-        SSLCertificateKeyFile /etc/keys/server.key
+	SSLEngine On
+	SSLCertificateFile /etc/cert/cert.cer
+	SSLCertificateChainFile /etc/cert/chain.cer
+	SSLCertificateKeyFile /etc/keys/server.key
 
 The example above assumes that certificates are stored in `/etc/cert` and the
 server private key is stored in `/etc/keys`.  The server private key should

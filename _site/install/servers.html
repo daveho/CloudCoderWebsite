@@ -43,11 +43,10 @@
   </tbody>
 </table>
 
-<p>This page describes how to provision and set up the two
-servers.</p>
-
 <p>To deploy CloudCoder, you will need two Linux servers: the
-<em>webapp server</em> and the <em>build server</em>.</p>
+<em>webapp server</em> and the <em>build server</em>.
+This page describes how to provision and set up these
+servers.</p>
 
 <p><em>Note</em>: you can probably use another Unix variant such as
 FreeBSD or Solaris rather than Linux, but CloudCoder is not
@@ -64,7 +63,7 @@ courses, problems, users, and student submissions.</p>
 <ul>
   <li>512M or more RAM</li>
   <li>2G or more disk space</li>
-  <li>any modern CPU</li>
+  <li>any modern CPU (single core is fine)</li>
   <li>port 443 open (for SSL)</li>
   <li>an SSL certificate</li>
 </ul>
@@ -92,7 +91,7 @@ software on it:</p>
 <p>On Debian or Ubuntu Linux, use the command:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-6-jdk mysql-client mysql-server apache2
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-<span style="color:#00D">6</span>-jdk mysql-client mysql-server apache2
 </pre></div>
 </div>
 </div>
@@ -108,7 +107,7 @@ command</p>
 
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass \
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=&quot;create user cloudcoder identified by 'somepassword'&quot;
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">create user cloudcoder identified by 'somepassword'</span><span style="color:#710">&quot;</span></span>
 </pre></div>
 </div>
 </div>
@@ -117,12 +116,11 @@ command</p>
 Replace <code>cloudcoder</code> and <code>somepassword</code> with the username and password you
 want to use.</p>
 
-<p>Next, create the database cloudcoder will use.  Again, the name
-<code>cloudcoderdb</code> is a good choice, but you can use any database name.
-Run the command</p>
+<p>Next, create the database cloudcoder will use.  <code>cloudcoderdb</code> is a good choice,
+but you can use any database name.  Run the command</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass --execute=&quot;create database cloudcoderdb&quot;
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass --execute=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">create database cloudcoderdb</span><span style="color:#710">&quot;</span></span>
 </pre></div>
 </div>
 </div>
@@ -131,12 +129,12 @@ Run the command</p>
 
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass \
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=&quot;grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'&quot;
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'</span><span style="color:#710">&quot;</span></span>
 </pre></div>
 </div>
 </div>
 
-<p>Again, replace <code>cloudcoder</code> and <code>cloudcoderdb</code> with the user name and
+<p>Again, replace <code>cloudcoder</code> and <code>cloudcoderdb</code> with the username and
 database name you chose previously.</p>
 
 <h3 id="configuring-apache2">Configuring Apache2</h3>
@@ -159,14 +157,14 @@ then it should be specified as</p>
 <p>Add a section to the top of the file (just below the <code>ServerAdmin</code> directive)
 as follows:</p>
 
-<pre><code>    # Transparently proxy requests for /cloudcoder to the
-    # CloudCoder Jetty server
-    ProxyPass /cloudcoder http://localhost:8081/cloudcoder
-    ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
-    &lt;Proxy http://localhost:8081/cloudcoder&gt;
-            Order Allow,Deny
-            Allow from all
-    &lt;/Proxy&gt;
+<pre><code># Transparently proxy requests for /cloudcoder to the
+# CloudCoder Jetty server
+ProxyPass /cloudcoder http://localhost:8081/cloudcoder
+ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
+&lt;Proxy http://localhost:8081/cloudcoder&gt;
+        Order Allow,Deny
+        Allow from all
+&lt;/Proxy&gt;
 </code></pre>
 
 <p>To make sure that <code>mod_proxy</code> is enabled, run the command</p>
@@ -180,10 +178,10 @@ as follows:</p>
 <p>At the bottom of the file, you will need to specify the locations of
 your SSL certificates and private key.  For example,</p>
 
-<pre><code>    SSLEngine On
-    SSLCertificateFile /etc/cert/cert.cer
-    SSLCertificateChainFile /etc/cert/chain.cer
-    SSLCertificateKeyFile /etc/keys/server.key
+<pre><code>SSLEngine On
+SSLCertificateFile /etc/cert/cert.cer
+SSLCertificateChainFile /etc/cert/chain.cer
+SSLCertificateKeyFile /etc/keys/server.key
 </code></pre>
 
 <p>The example above assumes that certificates are stored in <code>/etc/cert</code> and the
@@ -194,7 +192,7 @@ that establishes a chain of trust between a root CA and your server&rsquo;s cert
 <p>To enable Apache to server SSL requests, run the commands:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>cd /etc/apache2/sites-enabled &amp;&amp; sudo ln -s ../sites-available/default-ssl
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#06B;font-weight:bold">cd</span> /etc/apache2/sites-enabled &amp;&amp; sudo ln -s ../sites-available/default-ssl
 </pre></div>
 </div>
 </div>
@@ -236,7 +234,7 @@ configuration is</p>
 <p>To install this software on Debian or Ubuntu Linux:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-6-jdk gcc g++
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-<span style="color:#00D">6</span>-jdk gcc g++
 </pre></div>
 </div>
 </div>

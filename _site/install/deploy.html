@@ -50,9 +50,9 @@ the software.</p>
 <p>To deploy and start the web app, the general process is:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderWebServer/cloudcoderApp.jar username@server:/some/path
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderWebServer/cloudcoderApp.jar username@server<span style="color:#080;font-weight:bold">:</span>/some/path
 <span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>cd /some/path
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span style="color:#06B;font-weight:bold">cd</span> /some/path
 <span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderApp.jar start
 </pre></div>
 </div>
@@ -79,7 +79,7 @@ URL</p>
 
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /some/path
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span style="color:#06B;font-weight:bold">cd</span> /some/path
 <span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderApp.jar shutdown
 </pre></div>
 </div>
@@ -90,9 +90,9 @@ URL</p>
 <p>To deploy the builder server software:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:/another/path
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server<span style="color:#080;font-weight:bold">:</span>/another/path
 <span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>cd /another/path
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span style="color:#06B;font-weight:bold">cd</span> /another/path
 <span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderBuilder.jar start
 </pre></div>
 </div>
@@ -114,7 +114,7 @@ and is ready to download and test submissions.</p>
 
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd /another/path
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span style="color:#06B;font-weight:bold">cd</span> /another/path
 <span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderBuilder.jar shutdown
 </pre></div>
 </div>
