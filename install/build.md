@@ -20,7 +20,6 @@ available:
 On Debian or Ubuntu Linux, you can install everything except the GWT
 SDK using the command
 
-{:lang='bash'}
 	sudo apt-get install git openjdk-6-jdk ant
 
 The GWT SDK can be downloaded from
@@ -37,7 +36,6 @@ for a directory whose name begins with `com.google.gwt.sdk`.
 
 Use git to check out the CloudCoder source code:
 
-{:lang='bash'}
 	git clone git://github.com/daveho/CloudCoder.git
 
 Alternately, you can fork the repository on github (at <https://github.com/daveho/CloudCoder>)
@@ -46,7 +44,6 @@ to the code.
 
 Change directory into the directory you just checked out:
 
-{:lang='bash'}
 	cd CloudCoder
 
 # Configure CloudCoder
@@ -54,7 +51,6 @@ Change directory into the directory you just checked out:
 Before you build CloudCoder, you need to enter all of the configuration
 information CloudCoder will need to run.  Run the command:
 
-{:lang='bash'}
 	./configure.pl
 
 You will be prompted with a series of questions.  Here is an example session:
@@ -122,7 +118,6 @@ that you specified when you [provisioned the servers](servers.html).
 
 To build CloudCoder, just run the command
 
-{:lang='bash'}
 	./build.pl
 
 The command will take a while to run, but when it finishes you will have

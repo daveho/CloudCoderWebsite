@@ -54,11 +54,8 @@ available:</p>
 <p>On Debian or Ubuntu Linux, you can install everything except the GWT
 SDK using the command</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install git openjdk-<span style="color:#00D">6</span>-jdk ant
-</pre></div>
-</div>
-</div>
+<pre><code>sudo apt-get install git openjdk-6-jdk ant
+</code></pre>
 
 <p>The GWT SDK can be downloaded from</p>
 
@@ -76,11 +73,8 @@ for a directory whose name begins with <code>com.google.gwt.sdk</code>.</p>
 
 <p>Use git to check out the CloudCoder source code:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>git clone git<span style="color:#080;font-weight:bold">:</span>//github.com/daveho/CloudCoder.git
-</pre></div>
-</div>
-</div>
+<pre><code>git clone git://github.com/daveho/CloudCoder.git
+</code></pre>
 
 <p>Alternately, you can fork the repository on github (at <a href="https://github.com/daveho/CloudCoder">https://github.com/daveho/CloudCoder</a>)
 and then clone your fork.  This is the best option if you plan to make any changes
@@ -88,22 +82,16 @@ to the code.</p>
 
 <p>Change directory into the directory you just checked out:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#06B;font-weight:bold">cd</span> CloudCoder
-</pre></div>
-</div>
-</div>
+<pre><code>cd CloudCoder
+</code></pre>
 
 <h1 id="configure-cloudcoder">Configure CloudCoder</h1>
 
 <p>Before you build CloudCoder, you need to enter all of the configuration
 information CloudCoder will need to run.  Run the command:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>./configure.pl
-</pre></div>
-</div>
-</div>
+<pre><code>./configure.pl
+</code></pre>
 
 <p>You will be prompted with a series of questions.  Here is an example session:</p>
 
@@ -171,11 +159,8 @@ that you specified when you <a href="servers.html">provisioned the servers</a>.<
 
 <p>To build CloudCoder, just run the command</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>./build.pl
-</pre></div>
-</div>
-</div>
+<pre><code>./build.pl
+</code></pre>
 
 <p>The command will take a while to run, but when it finishes you will have
 two jar files representing the deployable form of the software that
