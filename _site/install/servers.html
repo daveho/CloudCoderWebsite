@@ -101,13 +101,21 @@ software on it:</p>
 
 <p>On Debian or Ubuntu Linux, use the command:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-<span style="color:#00D">6</span>-jdk mysql-client mysql-server apache2
-</pre></div>
-</div>
-</div>
+<pre><code>sudo apt-get install openjdk-6-jdk mysql-client mysql-server apache2
+</code></pre>
 
 <p>Make a note of the password you choose for the MySQL <code>root</code> user.</p>
+
+<h3 id="create-a-cloudcoder-user-account">Create a cloudcoder user account</h3>
+
+<p>You will want to create a dedicated user account for running the CloudCoder
+web application.  Run the command:</p>
+
+<pre><code>sudo adduser cloud
+</code></pre>
+
+<p>This will create a user called <code>cloud</code>.  When you <a href="deploy.html">deploy the web application</a>,
+you will use this user account.</p>
 
 <h3 id="configuring-mysql">Configuring MySQL</h3>
 
@@ -116,12 +124,9 @@ to use to communicate with the database.  Using the username
 <code>cloudcoder</code> is a good choice.  To create the user, run the
 command</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass \
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">create user cloudcoder identified by 'somepassword'</span><span style="color:#710">&quot;</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code>mysql --user=root --pass \
+--execute="create user cloudcoder identified by 'somepassword'"
+</code></pre>
 
 <p>Enter the password for the MySQL <code>root</code> user when prompted.
 Replace <code>cloudcoder</code> and <code>somepassword</code> with the username and password you
@@ -130,20 +135,14 @@ want to use.</p>
 <p>Next, create the database cloudcoder will use.  <code>cloudcoderdb</code> is a good choice,
 but you can use any database name.  Run the command</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass --execute=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">create database cloudcoderdb</span><span style="color:#710">&quot;</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code>mysql --user=root --pass --execute="create database cloudcoderdb"
+</code></pre>
 
 <p>Finally, grant the cloudcoder user account permission to create tables:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mysql --user=root --pass \
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>    --execute=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'</span><span style="color:#710">&quot;</span></span>
-</pre></div>
-</div>
-</div>
+<pre><code>mysql --user=root --pass \
+--execute="grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'"
+</code></pre>
 
 <p>Again, replace <code>cloudcoder</code> and <code>cloudcoderdb</code> with the username and
 database name you chose previously.</p>
@@ -183,11 +182,8 @@ local port number the CloudCoder web application will listen on.</p>
 
 <p>To make sure that <code>mod_proxy</code> is enabled, run the command</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo a2enmod proxy
-</pre></div>
-</div>
-</div>
+<pre><code>sudo a2enmod proxy
+</code></pre>
 
 <p>At the bottom of the file, you will need to specify the locations of
 your SSL certificates and private key.  For example,</p>
@@ -205,19 +201,13 @@ that establishes a chain of trust between a root CA and your server&rsquo;s cert
 
 <p>To enable Apache to server SSL requests, run the commands:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span style="color:#06B;font-weight:bold">cd</span> /etc/apache2/sites-enabled &amp;&amp; sudo ln -s ../sites-available/default-ssl
-</pre></div>
-</div>
-</div>
+<pre><code>cd /etc/apache2/sites-enabled &amp;&amp; sudo ln -s ../sites-available/default-ssl
+</code></pre>
 
 <p>Apache should be restarted to make these configuration changes take effect:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo service apache2 restart
-</pre></div>
-</div>
-</div>
+<pre><code>sudo service apache2 restart
+</code></pre>
 
 <h1 id="the-build-server">The build server</h1>
 
@@ -248,11 +238,8 @@ configuration is</p>
 
 <p>To install this software on Debian or Ubuntu Linux:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>sudo apt-get install openjdk-<span style="color:#00D">6</span>-jdk gcc g++
-</pre></div>
-</div>
-</div>
+<pre><code>sudo apt-get install openjdk-6-jdk gcc g++
+</code></pre>
 
 			</div>
 	

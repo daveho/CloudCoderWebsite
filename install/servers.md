@@ -60,10 +60,19 @@ software on it:
 
 On Debian or Ubuntu Linux, use the command:
 
-{:lang='bash'}
 	sudo apt-get install openjdk-6-jdk mysql-client mysql-server apache2
 
 Make a note of the password you choose for the MySQL `root` user.
+
+### Create a cloudcoder user account
+
+You will want to create a dedicated user account for running the CloudCoder
+web application.  Run the command:
+
+	sudo adduser cloud
+
+This will create a user called `cloud`.  When you [deploy the web application](deploy.html),
+you will use this user account.
 
 ### Configuring MySQL
 
@@ -72,9 +81,8 @@ to use to communicate with the database.  Using the username
 `cloudcoder` is a good choice.  To create the user, run the
 command
 
-{:lang='bash'}
 	mysql --user=root --pass \
-		--execute="create user cloudcoder identified by 'somepassword'"
+	--execute="create user cloudcoder identified by 'somepassword'"
 
 Enter the password for the MySQL `root` user when prompted.
 Replace `cloudcoder` and `somepassword` with the username and password you
@@ -83,14 +91,12 @@ want to use.
 Next, create the database cloudcoder will use.  `cloudcoderdb` is a good choice,
 but you can use any database name.  Run the command
 
-{:lang='bash'}
 	mysql --user=root --pass --execute="create database cloudcoderdb"
 
 Finally, grant the cloudcoder user account permission to create tables:
 
-{:lang='bash'}
 	mysql --user=root --pass \
-		--execute="grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'"
+	--execute="grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'"
 
 Again, replace `cloudcoder` and `cloudcoderdb` with the username and
 database name you chose previously.
@@ -128,7 +134,6 @@ local port number the CloudCoder web application will listen on.
 
 To make sure that `mod_proxy` is enabled, run the command
 
-{:lang='bash'}
 	sudo a2enmod proxy
 
 At the bottom of the file, you will need to specify the locations of
@@ -146,12 +151,10 @@ that establishes a chain of trust between a root CA and your server's certificat
 
 To enable Apache to server SSL requests, run the commands:
 
-{:lang='bash'}
 	cd /etc/apache2/sites-enabled && sudo ln -s ../sites-available/default-ssl
 
 Apache should be restarted to make these configuration changes take effect:
 
-{:lang='bash'}
 	sudo service apache2 restart
 
 The build server
@@ -180,5 +183,4 @@ The build server requires the following software:
 
 To install this software on Debian or Ubuntu Linux:
 
-{:lang='bash'}
 	sudo apt-get install openjdk-6-jdk gcc g++
