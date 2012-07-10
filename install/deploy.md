@@ -17,16 +17,16 @@ the software.
 
 To deploy and start the web app, the general process is:
 
-{:lang='bash'}
-	scp CloudCoderWebServer/cloudcoderApp.jar username@server:/some/path
-	ssh username@server
-	cd /some/path
+	ssh cloud@server 'mkdir -p webapp'
+	scp CloudCoderWebServer/cloudcoderApp.jar cloud@server:webapp
+	ssh cloud@server
+	cd webapp
 	java -jar cloudcoderApp.jar start
 
-Replace `username` with the user account under which the webapp will run,
-which can be any user account.  Replace `server` with the full hostname
-(e.g., `cs.unseen.edu`) of the webapp server.  Replace `/some/path` for
-the path of the directory in which the webapp will run.
+In the commands above, `cloud` refers to the user account you created
+when you [provisioned the servers](servers.html).
+Replace `server` with the full hostname
+(e.g., `cloudcoder.unseen.edu`) of the webapp server.
 
 If all goes well, you should now be able to open a web browser with the
 URL
@@ -35,28 +35,28 @@ URL
 
 and see the CloudCoder login page.
 
-If errors occur, check `/var/log/apache2/error.log` and `/some/path/logs/cloudcoder.log`.
+If errors occur, check `/var/log/apache2/error.log` and `webapp/logs/cloudcoder.log`.
 
 ## Stopping the webapp
 
 To stop the webapp, run
 
-{:lang='bash'}
 	ssh username@server
-	cd /some/path
+	cd webapp
 	java -jar cloudcoderApp.jar shutdown
 
 # Deploying to the build server
 
 To deploy the builder server software:
 
-{:lang='bash'}
 	scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:/another/path
 	ssh username@server
 	cd /another/path
 	java -jar cloudcoderBuilder.jar start
 
 Replace `username`, `server`, and `/another/path` as appropriate.
+(In this case, `server` should be the server you're using as the build
+server, not the webapp server.)
 As with the webapp, `username` is the user account under which the build
 server software will run, which should be an unprivileged account.
 `server` is the hostname of the build server.  `/another/path` is the
@@ -70,7 +70,6 @@ and is ready to download and test submissions.
 
 To stop the build server, run
 
-{:lang='bash'}
 	ssh username@server
 	cd /another/path
 	java -jar cloudcoderBuilder.jar shutdown

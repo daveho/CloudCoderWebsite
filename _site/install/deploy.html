@@ -49,19 +49,17 @@ the software.</p>
 
 <p>To deploy and start the web app, the general process is:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderWebServer/cloudcoderApp.jar username@server<span style="color:#080;font-weight:bold">:</span>/some/path
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span style="color:#06B;font-weight:bold">cd</span> /some/path
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderApp.jar start
-</pre></div>
-</div>
-</div>
+<pre><code>ssh cloud@server 'mkdir -p webapp'
+scp CloudCoderWebServer/cloudcoderApp.jar cloud@server:webapp
+ssh cloud@server
+cd webapp
+java -jar cloudcoderApp.jar start
+</code></pre>
 
-<p>Replace <code>username</code> with the user account under which the webapp will run,
-which can be any user account.  Replace <code>server</code> with the full hostname
-(e.g., <code>cs.unseen.edu</code>) of the webapp server.  Replace <code>/some/path</code> for
-the path of the directory in which the webapp will run.</p>
+<p>In the commands above, <code>cloud</code> refers to the user account you created
+when you <a href="servers.html">provisioned the servers</a>.
+Replace <code>server</code> with the full hostname
+(e.g., <code>cloudcoder.unseen.edu</code>) of the webapp server.</p>
 
 <p>If all goes well, you should now be able to open a web browser with the
 URL</p>
@@ -71,34 +69,30 @@ URL</p>
 
 <p>and see the CloudCoder login page.</p>
 
-<p>If errors occur, check <code>/var/log/apache2/error.log</code> and <code>/some/path/logs/cloudcoder.log</code>.</p>
+<p>If errors occur, check <code>/var/log/apache2/error.log</code> and <code>webapp/logs/cloudcoder.log</code>.</p>
 
 <h2 id="stopping-the-webapp">Stopping the webapp</h2>
 
 <p>To stop the webapp, run</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span style="color:#06B;font-weight:bold">cd</span> /some/path
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderApp.jar shutdown
-</pre></div>
-</div>
-</div>
+<pre><code>ssh username@server
+cd webapp
+java -jar cloudcoderApp.jar shutdown
+</code></pre>
 
 <h1 id="deploying-to-the-build-server">Deploying to the build server</h1>
 
 <p>To deploy the builder server software:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server<span style="color:#080;font-weight:bold">:</span>/another/path
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>ssh username@server
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span style="color:#06B;font-weight:bold">cd</span> /another/path
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span>java -jar cloudcoderBuilder.jar start
-</pre></div>
-</div>
-</div>
+<pre><code>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:/another/path
+ssh username@server
+cd /another/path
+java -jar cloudcoderBuilder.jar start
+</code></pre>
 
 <p>Replace <code>username</code>, <code>server</code>, and <code>/another/path</code> as appropriate.
+(In this case, <code>server</code> should be the server you&rsquo;re using as the build
+server, not the webapp server.)
 As with the webapp, <code>username</code> is the user account under which the build
 server software will run, which should be an unprivileged account.
 <code>server</code> is the hostname of the build server.  <code>/another/path</code> is the
@@ -112,13 +106,10 @@ and is ready to download and test submissions.</p>
 
 <p>To stop the build server, run</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>ssh username@server
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span style="color:#06B;font-weight:bold">cd</span> /another/path
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>java -jar cloudcoderBuilder.jar shutdown
-</pre></div>
-</div>
-</div>
+<pre><code>ssh username@server
+cd /another/path
+java -jar cloudcoderBuilder.jar shutdown
+</code></pre>
 
 			</div>
 	
