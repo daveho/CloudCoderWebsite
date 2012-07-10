@@ -19,14 +19,20 @@ The webapp server
 The webapp server runs the CloudCoder web application, and
 hosts the database where CloudCoder will save information about
 courses, problems, users, and student submissions.
+It will need to be available on the network(s) your students
+will use to access CloudCoder.  Making it accessible from
+the public internet is ideal (since that would allow students to
+work anywhere), but you could also choose to make it available
+only on your campus network.
 
-Suggested configuration:
+Suggested server configuration:
 
 * 512M or more RAM
 * 2G or more disk space
 * any modern CPU (single core is fine)
 * port 443 open (for SSL)
-* an SSL certificate
+* a DNS name (e.g., **cloudcoder.unseen.edu**)
+* an SSL certificate (which must match the DNS name)
 
 The suggested configuration should be adequate for around 150
 concurrent users.
@@ -36,6 +42,11 @@ can set up a Linux virtual machine for you, this is a good option.
 [lowendbox](http://www.lowendbox.com/) is a good resource for finding
 an inexpensive hosting service.  Cloud hosting services such
 as [Amazon EC2](http://aws.amazon.com/ec2/) are also a good choice.
+(An EC2 micro instance works well as a webapp server.)
+
+If you use a hosting service, we recommend that you use Debian or
+Ubuntu Linux.  For example, if you use Amazon EC2
+Ubuntu Server 12.04 LTS is a good choice.
 
 Webapp server configuration
 ---------------------------
@@ -95,10 +106,10 @@ file `/etc/apache2/sites-available/default-ssl`.  This file should
 begin with the line `<VirtualHost *:443>`.
 
 Make sure the `ServerName` directive is specified correctly.
-For example, if your hostname is `cs.unseen.edu`,
+For example, if your hostname is `cloudcoder.unseen.edu`,
 then it should be specified as
 
-	ServerName cs.unseen.edu:443
+	ServerName cloudcoder.unseen.edu:443
 
 Add a section to the top of the file (just below the `ServerAdmin` directive)
 as follows:
@@ -108,9 +119,12 @@ as follows:
 	ProxyPass /cloudcoder http://localhost:8081/cloudcoder
 	ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
 	<Proxy http://localhost:8081/cloudcoder>
-	        Order Allow,Deny
-	        Allow from all
+	    Order Allow,Deny
+	    Allow from all
 	</Proxy>
+
+Note that the port number mentioned in the example above (8081) is the
+local port number the CloudCoder web application will listen on.
 
 To make sure that `mod_proxy` is enabled, run the command
 
@@ -147,9 +161,10 @@ The build server is the server that builds and tests student submissions.
 It does *not* need to be accessible from a public network: it maintains
 a network connection to the webapp server, and when the webapp has
 a submission that needs testing, it is sent to the build server via this
-connection.  So, you will probably provision the build server as
-a physical PC that you place in a location that has a network connection.
-(You can use a hosting service for the build server, but it's not necessary.)
+connection.  So, you can provision the build server as
+a physical PC that you place in a location that has a network connection
+(your office, a server room, etc.)
+You can also use a hosting service for the build server.
 
 Depending on how many students will be using CloudCoder, you may want
 to choose relatively powerful hardware for the build server.  A suggested

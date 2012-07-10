@@ -56,16 +56,22 @@ tested on non-Linux platforms, so you might encounter issues.</p>
 
 <p>The webapp server runs the CloudCoder web application, and
 hosts the database where CloudCoder will save information about
-courses, problems, users, and student submissions.</p>
+courses, problems, users, and student submissions.
+It will need to be available on the network(s) your students
+will use to access CloudCoder.  Making it accessible from
+the public internet is ideal (since that would allow students to
+work anywhere), but you could also choose to make it available
+only on your campus network.</p>
 
-<p>Suggested configuration:</p>
+<p>Suggested server configuration:</p>
 
 <ul>
   <li>512M or more RAM</li>
   <li>2G or more disk space</li>
   <li>any modern CPU (single core is fine)</li>
   <li>port 443 open (for SSL)</li>
-  <li>an SSL certificate</li>
+  <li>a DNS name (e.g., <strong>cloudcoder.unseen.edu</strong>)</li>
+  <li>an SSL certificate (which must match the DNS name)</li>
 </ul>
 
 <p>The suggested configuration should be adequate for around 150
@@ -75,7 +81,12 @@ concurrent users.</p>
 can set up a Linux virtual machine for you, this is a good option.
 <a href="http://www.lowendbox.com/">lowendbox</a> is a good resource for finding
 an inexpensive hosting service.  Cloud hosting services such
-as <a href="http://aws.amazon.com/ec2/">Amazon EC2</a> are also a good choice.</p>
+as <a href="http://aws.amazon.com/ec2/">Amazon EC2</a> are also a good choice.
+(An EC2 micro instance works well as a webapp server.)</p>
+
+<p>If you use a hosting service, we recommend that you use Debian or
+Ubuntu Linux.  For example, if you use Amazon EC2
+Ubuntu Server 12.04 LTS is a good choice.</p>
 
 <h2 id="webapp-server-configuration">Webapp server configuration</h2>
 
@@ -148,10 +159,10 @@ file <code>/etc/apache2/sites-available/default-ssl</code>.  This file should
 begin with the line <code>&lt;VirtualHost *:443&gt;</code>.</p>
 
 <p>Make sure the <code>ServerName</code> directive is specified correctly.
-For example, if your hostname is <code>cs.unseen.edu</code>,
+For example, if your hostname is <code>cloudcoder.unseen.edu</code>,
 then it should be specified as</p>
 
-<pre><code>ServerName cs.unseen.edu:443
+<pre><code>ServerName cloudcoder.unseen.edu:443
 </code></pre>
 
 <p>Add a section to the top of the file (just below the <code>ServerAdmin</code> directive)
@@ -162,10 +173,13 @@ as follows:</p>
 ProxyPass /cloudcoder http://localhost:8081/cloudcoder
 ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
 &lt;Proxy http://localhost:8081/cloudcoder&gt;
-        Order Allow,Deny
-        Allow from all
+    Order Allow,Deny
+    Allow from all
 &lt;/Proxy&gt;
 </code></pre>
+
+<p>Note that the port number mentioned in the example above (8081) is the
+local port number the CloudCoder web application will listen on.</p>
 
 <p>To make sure that <code>mod_proxy</code> is enabled, run the command</p>
 
@@ -211,9 +225,10 @@ that establishes a chain of trust between a root CA and your server&rsquo;s cert
 It does <em>not</em> need to be accessible from a public network: it maintains
 a network connection to the webapp server, and when the webapp has
 a submission that needs testing, it is sent to the build server via this
-connection.  So, you will probably provision the build server as
-a physical PC that you place in a location that has a network connection.
-(You can use a hosting service for the build server, but it&rsquo;s not necessary.)</p>
+connection.  So, you can provision the build server as
+a physical PC that you place in a location that has a network connection
+(your office, a server room, etc.)
+You can also use a hosting service for the build server.</p>
 
 <p>Depending on how many students will be using CloudCoder, you may want
 to choose relatively powerful hardware for the build server.  A suggested
