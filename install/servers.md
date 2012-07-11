@@ -73,21 +73,22 @@ web application.  Run the command:
 	sudo adduser cloud
 
 This will create a user called `cloud`.  When you [deploy the web application](deploy.html),
-you will use this user account.
+you will use this user account.  You will be prompted to choose a password
+for this account.
 
 ### Configuring MySQL
 
-You will need to create a MySQL user account for the CloudCoder webapp
-to use to communicate with the database.  Using the username
-`cloudcoder` is a good choice.  To create the user, run the
-command
+You will need to create a MySQL user for the CloudCoder webapp
+to use.  The username `cloudcoder` is a good choice.  To create the user,
+run the command
 
 	mysql --user=root --pass \
-	--execute="create user cloudcoder identified by 'somepassword'"
+	--execute="create user 'cloudcoder'@'localhost' identified by 'somepassword'"
 
 Enter the password for the MySQL `root` user when prompted.
-Replace `cloudcoder` and `somepassword` with the username and password you
-want to use.
+Replace `somepassword` with the password you
+want to use.  (If you chose a different username, replace
+`cloudcoder` with that username.)
 
 Next, create the database cloudcoder will use.  `cloudcoderdb` is a good choice,
 but you can use any database name.  Run the command
