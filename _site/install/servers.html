@@ -183,9 +183,10 @@ ProxyPassReverse /cloudcoder http://localhost:8081/cloudcoder
 <p>Note that the port number mentioned in the example above (8081) is the
 local port number the CloudCoder web application will listen on.</p>
 
-<p>To make sure that <code>mod_proxy</code> is enabled, run the command</p>
+<p>To make sure that <code>mod_proxy</code> is enabled, run the commands</p>
 
 <pre><code>sudo a2enmod proxy
+sudo a2enmod proxy_http
 </code></pre>
 
 <p>At the bottom of the file, you will need to specify the locations of

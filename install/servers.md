@@ -134,9 +134,10 @@ as follows:
 Note that the port number mentioned in the example above (8081) is the
 local port number the CloudCoder web application will listen on.
 
-To make sure that `mod_proxy` is enabled, run the command
+To make sure that `mod_proxy` is enabled, run the commands
 
 	sudo a2enmod proxy
+	sudo a2enmod proxy_http
 
 At the bottom of the file, you will need to specify the locations of
 your SSL certificates and private key.  For example,
