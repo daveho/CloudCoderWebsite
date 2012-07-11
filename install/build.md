@@ -13,8 +13,7 @@ use whatever computer you are using as your build server
 
 # Prerequisites
 
-You can build CloudCoder on any computer that has the following software
-available:
+To build CloudCoder, you will need the following software:
 
 * git
 * JDK 1.6 or later
