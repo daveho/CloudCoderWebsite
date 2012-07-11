@@ -22,7 +22,7 @@ the initial database contents.  Run the commands:
 	ssh cloud@server
 	mysql --user=cloudcoder --pass cloudcoderdb < cloudcoder-schema.sql
 
-The command above refers to some choices you made when
+The commands above refer to some choices you made when
 you [provisioned the servers](servers.html):
 
 * `cloud` is the user account under which the webapp will run
@@ -30,7 +30,9 @@ you [provisioned the servers](servers.html):
 * `cloudcoder` is the database username
 * `cloucoderdb` is the database name
 
-Note that the database only needs to be imported once.
+You will be prompted to enter the password for the MySQL user.
+
+Note that the database only needs to be imported once
 
 # Deploying to the webapp
 
