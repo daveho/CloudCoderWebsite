@@ -43,7 +43,29 @@ webapp server and build server.</p>
 jar files.  These jar files are completely self-contained: all you need
 to do is copy them to the server.  Once copied to the server,
 simple commands (described below) allow you to start, control, and stop
-the software.</p>
+the webapp and builder processes.</p>
+
+<h1 id="import-the-database">Import the database</h1>
+
+<p>Before the webapp will be able to run, you will need to import
+the initial database contents.  Run the commands:</p>
+
+<pre><code>scp CloudCoder/resources/cloudcoder-schema.sql cloud@server:
+ssh cloud@server
+mysql --user=cloudcoder --pass cloudcoderdb &lt; cloudcoder-schema.sql
+</code></pre>
+
+<p>The command above refers to some choices you made when
+you <a href="servers.html">provisioned the servers</a>:</p>
+
+<ul>
+  <li><code>cloud</code> is the user account under which the webapp will run</li>
+  <li><code>server</code> is the full hostname (e.g., <code>cloudcoder.unseen.edu</code>) of the webapp server</li>
+  <li><code>cloudcoder</code> is the database username</li>
+  <li><code>cloucoderdb</code> is the database name</li>
+</ul>
+
+<p>Note that the database only needs to be imported once.</p>
 
 <h1 id="deploying-to-the-webapp">Deploying to the webapp</h1>
 
@@ -56,10 +78,8 @@ cd webapp
 java -jar cloudcoderApp.jar start
 </code></pre>
 
-<p>In the commands above, <code>cloud</code> refers to the user account you created
-when you <a href="servers.html">provisioned the servers</a>.
-Replace <code>server</code> with the full hostname
-(e.g., <code>cloudcoder.unseen.edu</code>) of the webapp server.</p>
+<p>Again, <code>cloud</code> is the user account and <code>server</code> is the full hostname
+of the webapp server.</p>
 
 <p>If all goes well, you should now be able to open a web browser with the
 URL</p>
