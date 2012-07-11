@@ -6,6 +6,11 @@ title: Building the CloudCoder Software
 
 This page describes how to configure and build the CloudCoder software.
 
+You can build the CloudCoder software on any computer (for example,
+the computer you normally use for development.)  You could also
+use whatever computer you are using as your build server
+(since it will be running Linux and  is probably relatively powerful.)
+
 # Prerequisites
 
 You can build CloudCoder on any computer that has the following software
