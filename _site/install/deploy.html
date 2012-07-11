@@ -107,19 +107,19 @@ java -jar cloudcoderApp.jar shutdown
 
 <p>To deploy the builder server software:</p>
 
-<pre><code>scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:/another/path
+<pre><code>ssh username@server 'mkdir -p builder'
+scp CloudCoderBuilder/cloudcoderBuilder.jar username@server:builder
 ssh username@server
-cd /another/path
+cd builder
 java -jar cloudcoderBuilder.jar start
 </code></pre>
 
-<p>Replace <code>username</code>, <code>server</code>, and <code>/another/path</code> as appropriate.
+<p>Replace <code>username</code> and <code>server</code> as appropriate.
 (In this case, <code>server</code> should be the server you&rsquo;re using as the build
 server, not the webapp server.)
 As with the webapp, <code>username</code> is the user account under which the build
 server software will run, which should be an unprivileged account.
-<code>server</code> is the hostname of the build server.  <code>/another/path</code> is the
-directory in which the build server software will run.</p>
+<code>server</code> is the hostname of the build server.</p>
 
 <p>You can check <code>logs/builder.log</code> for startup messages.  If you see messages that
 read <code>Connected!</code> then the build server has successfully connected to the webapp
@@ -130,7 +130,7 @@ and is ready to download and test submissions.</p>
 <p>To stop the build server, run</p>
 
 <pre><code>ssh username@server
-cd /another/path
+cd builder
 java -jar cloudcoderBuilder.jar shutdown
 </code></pre>
 
