@@ -13,33 +13,32 @@ to do is copy them to the server.  Once copied to the server,
 simple commands (described below) allow you to start, control, and stop
 the webapp and builder processes.
 
-# Import the database
+# Copying the webapp to the server
 
-Before the webapp will be able to run, you will need to import
-the initial database contents.  Run the commands:
-
-	scp CloudCoder/resources/cloudcoder-schema.sql cloud@server:
-	ssh cloud@server
-	mysql --user=cloudcoder --pass cloudcoderdb < cloudcoder-schema.sql
-
-The commands above refer to some choices you made when
-you [provisioned the servers](servers.html):
-
-* `cloud` is the user account under which the webapp will run
-* `server` is the full hostname (e.g., `cloudcoder.unseen.edu`) of the webapp server
-* `cloudcoder` is the database username
-* `cloucoderdb` is the database name
-
-You will be prompted to enter the password for the MySQL user.
-
-Note that the database only needs to be imported once
-
-# Deploying to the webapp
-
-To deploy and start the web app, the general process is:
+The webapp is a single executable jar file.  Copy it to the webapp
+server with the following commands:
 
 	ssh cloud@server 'mkdir -p webapp'
 	scp CloudCoderWebServer/cloudcoderApp.jar cloud@server:webapp
+
+# Import the database
+
+Before the webapp will be able to run, you will need to import
+the initial database contents.  Run the following commands:
+
+	ssh cloud@server
+	cd webapp
+	java -jar cloudcoderApp.jar createdb
+
+You will be prompted to choose a name and password for your CloudCoder
+user account, and to enter an institution name.
+
+Note that the database only needs to be imported once
+
+# Starting the webapp
+
+To start the web app:
+
 	ssh cloud@server
 	cd webapp
 	java -jar cloudcoderApp.jar start
@@ -52,7 +51,9 @@ URL
 
 	https://server/cloudcoder
 
-and see the CloudCoder login page.
+and see the CloudCoder login page.  You should be able to log in
+using the username and password you chose when you imported the
+database.
 
 If errors occur, check `/var/log/apache2/error.log` and `webapp/logs/cloudcoder.log`.
 
@@ -64,7 +65,7 @@ To stop the webapp, run
 	cd webapp
 	java -jar cloudcoderApp.jar shutdown
 
-# Deploying to the build server
+# Deploying the build server
 
 To deploy the builder server software:
 

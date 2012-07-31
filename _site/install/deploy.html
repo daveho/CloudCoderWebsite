@@ -46,37 +46,35 @@ to do is copy them to the server.  Once copied to the server,
 simple commands (described below) allow you to start, control, and stop
 the webapp and builder processes.</p>
 
-<h1 id="import-the-database">Import the database</h1>
+<h1 id="copying-the-webapp-to-the-server">Copying the webapp to the server</h1>
 
-<p>Before the webapp will be able to run, you will need to import
-the initial database contents.  Run the commands:</p>
-
-<pre><code>scp CloudCoder/resources/cloudcoder-schema.sql cloud@server:
-ssh cloud@server
-mysql --user=cloudcoder --pass cloudcoderdb &lt; cloudcoder-schema.sql
-</code></pre>
-
-<p>The commands above refer to some choices you made when
-you <a href="servers.html">provisioned the servers</a>:</p>
-
-<ul>
-  <li><code>cloud</code> is the user account under which the webapp will run</li>
-  <li><code>server</code> is the full hostname (e.g., <code>cloudcoder.unseen.edu</code>) of the webapp server</li>
-  <li><code>cloudcoder</code> is the database username</li>
-  <li><code>cloucoderdb</code> is the database name</li>
-</ul>
-
-<p>You will be prompted to enter the password for the MySQL user.</p>
-
-<p>Note that the database only needs to be imported once</p>
-
-<h1 id="deploying-to-the-webapp">Deploying to the webapp</h1>
-
-<p>To deploy and start the web app, the general process is:</p>
+<p>The webapp is a single executable jar file.  Copy it to the webapp
+server with the following commands:</p>
 
 <pre><code>ssh cloud@server 'mkdir -p webapp'
 scp CloudCoderWebServer/cloudcoderApp.jar cloud@server:webapp
-ssh cloud@server
+</code></pre>
+
+<h1 id="import-the-database">Import the database</h1>
+
+<p>Before the webapp will be able to run, you will need to import
+the initial database contents.  Run the following commands:</p>
+
+<pre><code>ssh cloud@server
+cd webapp
+java -jar cloudcoderApp.jar createdb
+</code></pre>
+
+<p>You will be prompted to choose a name and password for your CloudCoder
+user account, and to enter an institution name.</p>
+
+<p>Note that the database only needs to be imported once</p>
+
+<h1 id="starting-the-webapp">Starting the webapp</h1>
+
+<p>To start the web app:</p>
+
+<pre><code>ssh cloud@server
 cd webapp
 java -jar cloudcoderApp.jar start
 </code></pre>
@@ -90,7 +88,9 @@ URL</p>
 <pre><code>https://server/cloudcoder
 </code></pre>
 
-<p>and see the CloudCoder login page.</p>
+<p>and see the CloudCoder login page.  You should be able to log in
+using the username and password you chose when you imported the
+database.</p>
 
 <p>If errors occur, check <code>/var/log/apache2/error.log</code> and <code>webapp/logs/cloudcoder.log</code>.</p>
 
@@ -103,7 +103,7 @@ cd webapp
 java -jar cloudcoderApp.jar shutdown
 </code></pre>
 
-<h1 id="deploying-to-the-build-server">Deploying to the build server</h1>
+<h1 id="deploying-the-build-server">Deploying the build server</h1>
 
 <p>To deploy the builder server software:</p>
 
