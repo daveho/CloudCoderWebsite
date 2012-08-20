@@ -90,12 +90,7 @@ Replace `somepassword` with the password you
 want to use.  (If you chose a different username, replace
 `cloudcoder` with that username.)
 
-Next, create the database cloudcoder will use.  `cloudcoderdb` is a good choice,
-but you can use any database name.  Run the command
-
-	mysql --user=root --pass --execute="create database cloudcoderdb"
-
-Finally, grant the cloudcoder user account permission to create tables:
+Next, grant the cloudcoder user account permission to create the database:
 
 	mysql --user=root --pass \
 	--execute="grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'"
