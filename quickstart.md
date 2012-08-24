@@ -15,5 +15,5 @@ This Quickstart guide helps you configure CloudCoder as quickly as possible, tho
 3. [Deploy CloudCoder](quickstart/deploy.html)
 4. [Deploy CloudCoder's Builder](quickstart/builder.html)
 5. [Commands to manage your CloudCoder installation](quickstart/commands.html)
-6. [How to install updates](quickstart/updates.html)
+6. [How to install updates](quickstart/update.html)
 
