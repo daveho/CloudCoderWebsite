@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>CloudCoder - Add Problems</title>
+		<title>CloudCoder - Configure MySQL</title>
 		<link rel="stylesheet" href="/css/cloudcoder.css" />
 		<link rel="stylesheet" href="/css/coderay.css" />
 	</head>
@@ -14,7 +14,7 @@
 		<!-- Page content -->
 		<div id="container">
 
-			<div id="banner">CloudCoder - Add Problems</div>
+			<div id="banner">CloudCoder - Configure MySQL</div>
 
 			<div id="topnav">
 				<a href="/">Home</a> |
@@ -36,7 +36,39 @@
 			</div>
 	
 			<div id="content">
-			<p>Coming soon.</p>
+			<table>
+  <tbody>
+    <tr>
+      <td>Prev</td>
+      <td><a href="configure.html">Next</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="configuring-mysql">Configuring MySQL</h3>
+
+<p>You will need to create a MySQL user for the CloudCoder webapp
+to use.  The username <code>cloudcoder</code> is a good choice.  To create the user,
+run the command</p>
+
+<pre><code>mysql --user=root --pass \
+--execute="create user 'cloudcoder'@'localhost' identified by 'somepassword'"
+</code></pre>
+
+<p>Enter the password for the MySQL <code>root</code> user when prompted.
+Replace <code>somepassword</code> with the password you
+want to use.  (If you chose a different username, replace
+<code>cloudcoder</code> with that username.)</p>
+
+<p>Next, grant the cloudcoder user account permission to create the database:</p>
+
+<pre><code>mysql --user=root --pass \
+--execute="grant all on cloudcoderdb.* to 'cloudcoder'@'localhost'"
+</code></pre>
+
+<p>Again, replace <code>cloudcoder</code> and <code>cloudcoderdb</code> with the username and
+database name you chose previously.</p>
+
 
 			</div>
 	

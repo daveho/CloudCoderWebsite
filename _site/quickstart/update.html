@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>CloudCoder - How to update CloudCoder</title>
+		<link rel="stylesheet" href="/css/cloudcoder.css" />
+		<link rel="stylesheet" href="/css/coderay.css" />
+	</head>
+
+	<body>
+		<!-- Page background -->
+		<div id="bg"><div id="bg-center"></div></div>
+
+		<!-- Page content -->
+		<div id="container">
+
+			<div id="banner">CloudCoder - How to update CloudCoder</div>
+
+			<div id="topnav">
+				<a href="/">Home</a> |
+				<a href="/screenshots.html">Screenshots</a> |
+				<a href="/quickstart.html">Quickstart Guide</a> |
+				<a href="/getstarted.html">Getting Started</a> |
+				<a href="/demo.html">Demo Server</a> |
+				<a href="/repository.html">Exercise Repository</a> |
+				<a href="/contribute.html">Contributing</a>
+			</div>
+	
+			<div class="warning">
+				<strong>Please note:</strong>
+				This site is a work in progress, and information may be
+				incomplete or inaccurate.  CloudCoder development is progressing
+				rapidly, and it should be ready for wider use in
+				September, 2012. If you're interested in becoming an early
+				adopter now, email <a href="mailto:dhovemey@ycp.edu">dhovemey@ycp.edu</a>.
+			</div>
+	
+			<div id="content">
+			<table>
+  <tbody>
+    <tr>
+      <td><a href="commands.html">Prev</a></td>
+      <td>Next</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="updating-cloudcoder">Updating CloudCoder</h3>
+
+<p>We may distribute new pre-compiled CloudCoder binaries (bug fixes, new features, etc).  To take advantage of these new binaries:</p>
+
+<ol>
+  <li>
+    <p>Download the new binaries and put them into a new folder.  Do not copy over your existing cloudcoder binaries, in case the new distribution has an error (hopefully unlikely since the CloudCoder team are awesome coders, but certainly possible).</p>
+  </li>
+  <li>
+    <p>Copy your existing cloudcoder.properties file into the folder containing your new binaries.</p>
+  </li>
+  <li>
+    <p><a href="configure.html">Configure the CloudCoder binaries</a> following the same steps outlined previously in this quickstart guide.</p>
+  </li>
+  <li>
+    <p>Shutdown your current CloudCoder builders (<a href="builder.html">instructions here</a>)</p>
+  </li>
+  <li>
+    <p>Shutdown your current CloudCoder server (<a href="commands.html">instructions here</a>)</p>
+  </li>
+  <li>
+    <p>Start the new server in a new folder.  Since it will use the same CloudCoder database, it should work without any configuration on the database.</p>
+  </li>
+  <li>
+    <p>Start the new builders.</p>
+  </li>
+</ol>
+
+			</div>
+	
+			<div id="footer">
+				&copy; 2012 CloudCoder team
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+			</div>
+
+		</div>
+	</body>
+
+</html>
