@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Welcome to Cloudcoder!
+title: Welcome to CloudCoder!
 ---
 <img alt="CloudCoder logo" style="float: right;" src="/img/CloudCoderLogo-med.png" />
 
