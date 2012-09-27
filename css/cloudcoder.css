@@ -63,3 +63,8 @@ html, body {
 	border: 2px solid silver;
 	margin: 8px 20px;
 }
+
+.screenshot {
+	width: 400px;
+	margin-left: 40px;
+}
