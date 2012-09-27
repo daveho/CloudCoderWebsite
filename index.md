@@ -2,6 +2,8 @@
 layout: default
 title: Home
 ---
+<img alt="CloudCoder logo" style="float: right;" src="/img/CloudCoderLogo-med.png" />
+
 Welcome to CloudCoder!
 
 CloudCoder is an open source web-based programming exercise system.

@@ -22,8 +22,7 @@ However, you should create a separate folder for each builder.  You
 can use the same cloudcoderBuilder.jar (by symlinks or by specificying
 a relative or absolute path to find the file).
 
-### It is not recommended, but you _can_ run the builder on the same
-    machine as the server.
+### It is not recommended, but you _can_ run the builder on the same machine as the server.
 
 We don't recommend running the builder on the same machine as the
 server.  But, it will work well to try out the system, for small

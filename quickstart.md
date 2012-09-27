@@ -7,7 +7,7 @@ title: Quickstart
 
 This Quickstart guide helps you configure CloudCoder as quickly as possible, though in a manner that is less secure and less scalable than a complete installation.  Specifically:
 
-* Running CloudCoder directly (i.e. without configuring an apache reverse-proxy as detailed in the full [Getting Started](getstarted.html)) will not use SSL to connect to he server.
+* Running CloudCoder directly (i.e. without configuring an apache reverse-proxy as detailed in the full [Getting Started](getstarted.html)) will not use SSL to connect to the server.
 * Running the webapp and builder on the same machine may not scale up.
 
 1. [Configure MySQL](quickstart/mysql.html)
