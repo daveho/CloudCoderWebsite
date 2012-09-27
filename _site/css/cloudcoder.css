@@ -40,6 +40,7 @@ html, body {
 #pageTitle {
 	font-size: 180%;
 	font-weight: bold;
+	border-bottom: 2px solid silver;
 }
 
 #content {
@@ -49,11 +50,11 @@ html, body {
 }
 
 #content h1 {
-	font-size: 180%;
+	font-size: 160%;
 }
 
 #content h2 {
-	font-size: 140%;
+	font-size: 130%;
 }
 
 #content pre {
