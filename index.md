@@ -1,10 +1,8 @@
 ---
 layout: default
-title: Home
+title: Welcome to Cloudcoder!
 ---
 <img alt="CloudCoder logo" style="float: right;" src="/img/CloudCoderLogo-med.png" />
-
-Welcome to CloudCoder!
 
 CloudCoder is an open source web-based programming exercise system.
 It is designed to make it easy for instructors in introductory
@@ -23,7 +21,7 @@ submissions.  Only the web/database server needs to be
 network-facing.  See the [Getting Started](getstarted.html)
 page for details on how to install CloudCoder.
 
-The [CloudCoder execise repository](repository.html)
+The [CloudCoder exercise repository](repository.html)
 is a database of freely-redistributable exercises written by
 CloudCoder users.  You can easily import problems from the repository
 into your own CloudCoder installation for your students to
