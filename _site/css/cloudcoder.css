@@ -18,6 +18,10 @@ html, body {
 	border-bottom: 2px solid silver;
 }
 
+#topnav {
+	line-height: 2;
+}
+
 #footer {
 	border-top: 2px solid silver;
 }
