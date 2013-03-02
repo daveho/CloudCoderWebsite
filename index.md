@@ -4,7 +4,8 @@ title: Welcome to CloudCoder!
 ---
 <img alt="CloudCoder logo" style="float: right; margin-left: 10px;" src="/img/CloudCoderLogo-med.png" />
 
-CloudCoder is an [open source](opensource.html) web-based programming exercise system.
+CloudCoder is an [open source](opensource.html) web-based programming exercise system
+(inspired heavily by [CodingBat](http://codingbat.com/)).
 It is designed to make it easy for instructors of introductory
 programming courses to assign short exercises to students for
 skills development and assessment.  Currently, exercises in
