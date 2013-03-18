@@ -2,7 +2,6 @@
 layout: default
 title: Welcome to CloudCoder!
 ---
-<img alt="CloudCoder logo" style="float: right; margin-left: 10px;" src="/img/CloudCoderLogo-med.png" />
 
 CloudCoder is an [open source](opensource.html) web-based programming exercise system
 (inspired heavily by [CodingBat](http://codingbat.com/)).
@@ -13,8 +12,12 @@ C/C++, Java, Python, and Ruby are supported.
 
 Because CloudCoder is web-based, it is easy for students to
 use.  The only software students need to work on exercises
-is a web browser.  The
-[Screenshots](https://github.com/cloudcoderdotorg/CloudCoder/wiki/Screenshots)
+is a web browser.
+
+<a href="https://raw.github.com/wiki/cloudcoderdotorg/CloudCoder/img/screenshot-rubyproblem.png"><img style="float: right; margin-left: 10px;" src="img/ccscreenshot.png" alt="CloudCoder screenshot" /></a>
+
+The screenshot on the right shows a Ruby exercise (click for larger image).
+The [Screenshots](https://github.com/cloudcoderdotorg/CloudCoder/wiki/Screenshots)
 page shows CloudCoder in action.
 
 The [CloudCoder exercise repository](https://cloudcoder.org/repo)
