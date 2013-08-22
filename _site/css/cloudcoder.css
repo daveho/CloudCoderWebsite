@@ -11,6 +11,10 @@ html, body {
 	border: 0;
 }
 
+p {
+	margin-top: 20px;
+}
+
 #topnav, #footer {
 	text-align: center;
 	padding: 8px 16px;
@@ -42,9 +46,19 @@ html, body {
 }
 
 #pageTitle {
+	/*border-bottom: 2px solid silver;*/
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border-radius: 30px;
+	background: #ddf;
+	box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+	margin-top: 24px;
+}
+
+#pageTitle-inner {
 	font-size: 180%;
 	font-weight: bold;
-	border-bottom: 2px solid silver;
+	padding: 4px 30px;
 }
 
 #content {
