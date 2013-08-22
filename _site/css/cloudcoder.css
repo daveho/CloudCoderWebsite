@@ -51,8 +51,9 @@ p {
 	-webkit-border-radius: 30px;
 	border-radius: 30px;
 	background: #ddf;
-	box-shadow:rgba(0,0,0,0.5) 0px 0px 24px;
+	box-shadow: rgba(0,0,0,0.5) 0px 0px 24px;
 	margin-top: 24px;
+	margin-bottom: 24px;
 }
 
 #pageTitle-inner {
@@ -83,6 +84,10 @@ p {
 }
 
 .screenshot {
-	width: 400px;
-	margin-left: 40px;
+	float: right;
+	width: 320px;
+	margin-left: 32px;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	box-shadow: rgba(0,0,0,0.5) 0px 0px 24px;
 }

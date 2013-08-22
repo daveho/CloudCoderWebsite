@@ -14,7 +14,7 @@ Because CloudCoder is web-based, it is easy for students to
 use.  The only software students need to work on exercises
 is a web browser.
 
-<a href="https://raw.github.com/wiki/cloudcoderdotorg/CloudCoder/img/screenshot-rubyproblem.png"><img style="float: right; margin-left: 10px;" src="img/ccscreenshot.png" alt="CloudCoder screenshot" /></a>
+<a href="https://raw.github.com/wiki/cloudcoderdotorg/CloudCoder/img/screenshot-rubyproblem.png"><img class="screenshot" src="img/ccscreenshot.png" alt="CloudCoder screenshot" /></a>
 
 The screenshot on the right shows a Ruby exercise (click for larger image).
 The [Screenshots](https://github.com/cloudcoderdotorg/CloudCoder/wiki/Screenshots)
