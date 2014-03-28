@@ -2,15 +2,9 @@
 layout: default
 title: Screenshots
 ---
-<p>
 This page has screenshots of CloudCoder.  Click on a screenshot
 to see a full-size image.
-</p>
 
-<p>
 Working on a C exercise:
-</p>
-<a href="img/screenshot-cproblem.png"><img
-  class="screenshot"
-  src="img/screenshot-cproblem.png"
-  alt="CloudCoder screenshot" /></a>
+
+<a href="img/screenshot-cproblem2.png"><img class="screenshot" src="img/screenshot-cproblem2.png" alt="CloudCoder screenshot" /></a>
