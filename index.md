@@ -19,7 +19,7 @@ Because CloudCoder is web-based, it is easy for students to
 use.  The only software students need to work on exercises
 is a web browser.
 
-<a href="https://raw.github.com/wiki/cloudcoderdotorg/CloudCoder/img/screenshot-cproblem2.png"><img class="screenshot" src="https://raw.github.com/wiki/cloudcoderdotorg/CloudCoder/img/screenshot-cproblem2.png" alt="CloudCoder screenshot" /></a>
+<a href="https://raw.github.com/wiki/cloudcoderdotorg/CloudCoder/img/screenshot-cproblem2.png"><img class="screenshot" src="img/screenshot-cproblem2-sm.png" alt="CloudCoder screenshot" /></a>
 
 The screenshot on the right shows a C exercise (click for larger image).
 The [Screenshots](https://github.com/cloudcoderdotorg/CloudCoder/wiki/Screenshots)
