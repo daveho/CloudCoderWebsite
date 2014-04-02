@@ -34,7 +34,9 @@ blockquote p {
 	border-bottom: 2px solid silver;
 }
 
-#topnav {
+#topnav_inner {
+	margin-left: 60px;
+	margin-right: 60px;
 	line-height: 2;
 }
 
