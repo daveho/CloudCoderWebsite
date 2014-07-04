@@ -3,11 +3,6 @@ layout: default
 title: Welcome to CloudCoder!
 ---
 
-> <img src="/img/lightbulb.png" style="float: left; width: 56px; margin-top: 6px; margin-left: 8px;" />
-> Hey course instructors!  Thanks to a grant from [Amazon Web Services](http://aws.amazon.com),
-> we can directly host CloudCoder for a small number of courses during the 2013-2014 academic year.
-> Please [contact us](mailto:dhovemey@ycp.edu) if you are interested.
-
 CloudCoder is an [open source](opensource.html) web-based programming exercise system
 (inspired heavily by [CodingBat](http://codingbat.com/)).
 It is designed to make it easy for instructors of introductory
