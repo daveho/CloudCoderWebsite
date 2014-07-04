@@ -42,5 +42,5 @@ you can request an account on our [demo server](demo.html).
 
 The [CloudCoder wiki](https://github.com/cloudcoderdotorg/CloudCoder/wiki)
 is where the CloudCoder documentation lives.  We also have a
-[blog](http://cloudcoderdotorg.github.org/) where we post updates
+[blog](http://cloudcoderdotorg.github.io/) where we post updates
 from time to time.
