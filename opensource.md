@@ -11,15 +11,3 @@ The source is available on GitHub:
 
 Contributions are welcome - just fork the repository, make
 improvements, and send a pull request.
-
-# Development Team
-
-The CloudCoder lead developers are:
-
-<div style="margin-left: 40px;">Jaime Spacco &lt;<a href="mailto:jspacco@knox.edu">jspacco@knox.edu</a>&gt;</div>
-
-<div style="margin-left: 40px;">David Hovemeyer &lt;<a href="mailto:dhovemey@ycp.edu">dhovemey@ycp.edu</a>&gt;</div>
-
-Contributors:
-
-<div style="margin-left: 40px;">Andrei Papancea &lt;<a href="mailto:apapance@knox.edu">apapance@knox.edu</a>&gt;</div>

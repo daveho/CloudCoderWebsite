@@ -74,7 +74,7 @@ blockquote p {
 	padding: 4px 30px;
 }
 
-#content {
+#content, #comments-container {
 	margin-top: 12px;
 	margin-bottom: 12px;
 	padding: 0px 80px;
@@ -102,4 +102,15 @@ blockquote p {
 	margin-top: 12px;
 	margin-bottom: 12px;
 	box-shadow: rgba(0,0,0,0.5) 0px 0px 16px;
+}
+
+/* Minor tweak to get the CC image link to align nicely with the footer text */
+a.cc-img {
+	vertical-align: -2px;
+}
+
+div.tagline {
+	font-style: italic;
+	font-size: 90%;
+	text-align: right;
 }
