@@ -93,6 +93,7 @@ blockquote p {
 	background: #ddd;
 	border: 2px solid silver;
 	margin: 8px 20px;
+	padding: 8px;
 }
 
 .screenshot {
