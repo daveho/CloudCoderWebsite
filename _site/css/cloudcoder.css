@@ -20,11 +20,7 @@ blockquote {
 	background: #dfd;
 	border-radius: 24px;
 	box-shadow: rgba(0,0,0,0.5) 0px 0px 16px;
-}
-
-blockquote p {
 	padding: 8px 16px;
-	margin-left: 60px;
 }
 
 #topnav, #footer {
@@ -92,7 +88,8 @@ blockquote p {
 	display: block;
 	background: #ddd;
 	border: 2px solid silver;
-	margin: 8px 20px;
+	margin: 8px 40px;
+	padding: 8px;
 }
 
 .screenshot {
