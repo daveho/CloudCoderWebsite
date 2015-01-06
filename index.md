@@ -3,6 +3,8 @@ layout: default
 title: Welcome to CloudCoder!
 ---
 
+<blockquote><img style="display:block; width: 40px; float: left; margin-right: 20px;" src="img/lightbulb.png"><i>Jan 6, 2015</i>: CloudCoder version 0.1.2 has been released!<br>  See the <a href="http://cloudcoderdotorg.github.io/2015/01/06/version-0-1-2-released.html">blog post</a> for more info.</blockquote>
+
 CloudCoder is an [open source](opensource.html) web-based programming exercise system
 (inspired heavily by [CodingBat](http://codingbat.com/)).
 It is designed to make it easy for instructors of introductory
