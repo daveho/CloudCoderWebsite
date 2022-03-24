@@ -2,6 +2,10 @@
 layout: default
 title: Demo Server
 ---
+
+The demo server is no longer available.
+
+<!--
 The CloudCoder demo server is available for instructors who are
 interested in evaluating CloudCoder for use in their own courses:
 
@@ -11,3 +15,4 @@ Email <dhovemey@ycp.edu> if you would like to request
 an account on the demo server.  Please include a brief summary of
 why you are interested in using CloudCoder, e.g., you plan
 to use it in a course.
+-->
